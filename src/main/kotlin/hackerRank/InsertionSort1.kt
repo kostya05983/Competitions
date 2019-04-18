@@ -1,23 +1,12 @@
-import java.io.*
-import java.math.*
-import java.security.*
-import java.text.*
+package hackerRank
+
 import java.util.*
-import java.util.concurrent.*
-import java.util.function.*
-import java.util.regex.*
-import java.util.stream.*
 import kotlin.collections.*
-import kotlin.comparisons.*
 import kotlin.io.*
-import kotlin.jvm.*
-import kotlin.jvm.functions.*
-import kotlin.jvm.internal.*
 import kotlin.ranges.*
-import kotlin.sequences.*
 import kotlin.text.*
 
-// Complete the insertionSort1 function below.
+// Complete the hackerRank.insertionSort1 function below.
 fun insertionSort1(n: Int, arr: Array<Int>): Unit {
     var current: Int? = null
     for (i in n - 1 downTo 1) {

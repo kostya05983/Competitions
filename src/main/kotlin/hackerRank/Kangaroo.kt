@@ -1,6 +1,8 @@
+package hackerRank
+
 import java.util.*
 
-// Complete the kangaroo function below.
+// Complete the hackerRank.kangaroo function below.
 fun kangaroo(x1: Int, v1: Int, x2: Int, v2: Int): String {
     if (x2 > x1 && v2 >= v1) return "NO"
     if ((x1 - x2).rem(v2 - v1) == 0) return "YES"

@@ -1,24 +1,15 @@
+package hackerRank
+
 import java.io.*
-import java.math.*
-import java.security.*
-import java.text.*
 import java.util.*
-import java.util.concurrent.*
-import java.util.function.*
-import java.util.regex.*
 import java.util.stream.*
 import kotlin.Comparator
 import kotlin.collections.*
-import kotlin.comparisons.*
 import kotlin.io.*
-import kotlin.jvm.*
-import kotlin.jvm.functions.*
-import kotlin.jvm.internal.*
 import kotlin.ranges.*
-import kotlin.sequences.*
 import kotlin.text.*
 
-// Complete the bigSorting function below.
+// Complete the hackerRank.bigSorting function below.
 fun bigSorting(unsorted: Array<String>): Array<String> {
     val compareBigStrings = CompareBigStrings()
     Arrays.parallelSort(unsorted, compareBigStrings)
@@ -35,7 +26,7 @@ class CompareBigStrings : Comparator<String> {
 
 private fun runFromFile() {
     val bufferedReader =
-        BufferedReader(FileReader("/home/kostya05983/Projects/competitions/src/main/resources/numbers.txt"))
+        BufferedReader(FileReader("/home/kostya05983/Projects/competitions/src/hackerRank.main/resources/numbers.txt"))
     val arr = bufferedReader.lines().collect(Collectors.toList()).toTypedArray()
     val startTime = System.currentTimeMillis()
     bigSorting(arr)
@@ -44,7 +35,7 @@ private fun runFromFile() {
 
 
 fun main(args: Array<String>) {
-//    runFromFile()
+//    hackerRank.runFromFile()
     val scan = Scanner(System.`in`)
 
     val n = scan.nextLine().trim().toInt()

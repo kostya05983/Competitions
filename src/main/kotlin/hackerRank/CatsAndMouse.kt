@@ -1,6 +1,8 @@
+package hackerRank
+
 import java.util.*
 
-// Complete the catAndMouse function below.
+// Complete the hackerRank.catAndMouse function below.
 fun catAndMouse(x: Int, y: Int, z: Int): String {
     val distancCatA = Math.abs(x-z)
     val distancCatB = Math.abs(y-z)

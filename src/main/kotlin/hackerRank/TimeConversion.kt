@@ -1,11 +1,9 @@
-import java.io.*
-import java.math.*
-import java.text.*
+package hackerRank
+
 import java.util.*
-import java.util.regex.*
 
 /*
- * Complete the timeConversion function below.
+ * Complete the hackerRank.timeConversion function below.
  */
 fun timeConversion(s: String): String {
     /*

@@ -1,3 +1,5 @@
+package hackerRank
+
 data class Good(var name: String, var price: String, var quantity: String)
 
 
@@ -83,10 +85,10 @@ fun main() {
 
 <prod><name>window fan</name><prx>62</prx><qty>8</qty></prod>"""
 
-    val result =catalog(s, "ladder")
+    val result = catalog(s, "ladder")
     println(result)
-//    assertEquals("ladder > prx: $112 qty: 12", catalog(s, "ladder"))
-//    assertEquals("table saw > prx: $1099.99 qty: 5\nsaw > prx: $9 qty: 10\nsaw for metal > prx: $13.80 qty: 32", catalog(s, "saw"))
-//    assertEquals("wood pallet > prx: $65 qty: 21", catalog(s, "wood pallet"))
+//    assertEquals("ladder > prx: $112 qty: 12", hackerRank.catalog(s, "ladder"))
+//    assertEquals("table saw > prx: $1099.99 qty: 5\nsaw > prx: $9 qty: 10\nsaw for metal > prx: $13.80 qty: 32", hackerRank.catalog(s, "saw"))
+//    assertEquals("wood pallet > prx: $65 qty: 21", hackerRank.catalog(s, "wood pallet"))
 }
 

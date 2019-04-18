@@ -1,4 +1,6 @@
-// Complete the birthday function below.
+package hackerRank
+
+// Complete the hackerRank.birthday function below.
 fun birthday(s: Array<Int>, d: Int, m: Int): Int {
     var total = 0
 

@@ -1,3 +1,5 @@
+package hackerRank
+
 import java.io.BufferedReader
 import java.io.InputStreamReader
 

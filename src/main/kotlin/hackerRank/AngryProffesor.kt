@@ -1,6 +1,8 @@
+package hackerRank
+
 import java.util.*
 
-// Complete the angryProfessor function below.
+// Complete the hackerRank.angryProfessor function below.
 fun angryProfessor(k: Int, a: Array<Int>): String {
     val atTime = a.filter { it <=0 }.size
     return if(atTime<k) {

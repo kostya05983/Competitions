@@ -1,6 +1,8 @@
+package hackerRank
+
 import java.util.*
 
-// Complete the countApplesAndOranges function below.
+// Complete the hackerRank.countApplesAndOranges function below.
 fun countApplesAndOranges(s: Int, t: Int, a: Int, b: Int, apples: Array<Int>, oranges: Array<Int>) {
     val amountApples = apples.filter{it>0 && it>=(s-a)&&it<=(t-a)}.size
     val amountOranges = oranges.filter{it<0 && Math.abs(it)>=(b-t)&&Math.abs(it)<=(b-s)}.size

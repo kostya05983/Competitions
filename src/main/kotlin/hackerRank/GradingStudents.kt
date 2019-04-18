@@ -1,11 +1,9 @@
-import java.io.*
-import java.math.*
-import java.text.*
+package hackerRank
+
 import java.util.*
-import java.util.regex.*
 
 /*
- * Complete the gradingStudents function below.
+ * Complete the hackerRank.gradingStudents function below.
  */
 fun gradingStudents(grades: Array<Int>): Array<Int> {
     /*

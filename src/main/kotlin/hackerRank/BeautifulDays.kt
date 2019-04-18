@@ -1,6 +1,8 @@
+package hackerRank
+
 import java.util.*
 
-// Complete the beautifulDays function below.
+// Complete the hackerRank.beautifulDays function below.
 fun beautifulDays(i: Int, j: Int, k: Int): Int {
     var result = 0
     for (l in i..j) {

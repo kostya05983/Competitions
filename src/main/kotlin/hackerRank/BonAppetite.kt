@@ -1,4 +1,6 @@
-// Complete the bonAppetit function below.
+package hackerRank
+
+// Complete the hackerRank.bonAppetit function below.
 fun bonAppetit(bill: Array<Int>, k: Int, b: Int): Unit {
     val actual = (bill.sum()-bill[k])/2
     if(b-actual != 0)
