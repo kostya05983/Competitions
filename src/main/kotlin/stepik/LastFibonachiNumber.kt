@@ -1,4 +1,4 @@
-package secret
+package stepik
 
 import java.util.*
 
