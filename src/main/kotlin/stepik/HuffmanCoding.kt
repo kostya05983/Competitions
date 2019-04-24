@@ -7,64 +7,94 @@ import java.util.*
 /**
  * Node for huffman coding
  */
-class Node {
-    var left: Node? = null
-    var right: Node? = null
-    var char: Char? = null
+class Node(
+    var left: Node? = null,
+    var right: Node? = null,
+    var char: Char? = null,
     var frequency: Int = 0
-}
+)
 
 class HuffmanTree {
-    var root: Node? = null
+    lateinit var root: Node
 
-    fun add(newNode: Node) {
-        val huffmanCode = StringBuilder()
-
-    }
-
-    fun getASMap(): Map<Char, String> {
-        if (root == null) {
-            return mutableMapOf()
-        }
-
-        val stack = Stack<Node>()
-        stack.push(root)
+    fun getCodes(): MutableMap<Char, String> {
         val map = mutableMapOf<Char, String>()
-
-        while (!stack.empty()) {
-            val current = stack.pop()
-//            map[current.char!!] = current.code
-            if (current.left != null) {
-                stack.push(current.left)
-            }
-            if (current.right != null) {
-                stack.push(current.right)
-            }
+        if (root.left == null && root.right == null) {
+            map.put(root.char!!, "0")
+            return map
         }
+        getCode(map, "", root)
         return map
     }
+
+    private fun getCode(map: MutableMap<Char, String>, code: String, root: Node?) {
+        if (root != null) {
+            if (root.char != null) {
+                map[root.char!!] = code
+            }
+
+            if (root.left != null) {
+                getCode(map, code + "0", root.left!!)
+            }
+
+            if (root.right != null) {
+                getCode(map, code + "1", root.right!!)
+            }
+        }
+    }
+
+
 }
 
 /**
  * Build a priorityQueue by frequencies
  */
-fun buildPriorityQueue(sequence: String): PriorityQueue<Char> {
-    val priorityQueue = PriorityQueue<Char>()
-    val map = mutableMapOf<Int, Char>()
+fun buildPriorityQueue(sequence: String): PriorityQueue<Node> {
+    val priorityQueue = PriorityQueue<Node>(kotlin.Comparator { o1, o2 ->
+        return@Comparator o1.frequency.compareTo(o2.frequency)
+    })
 
-    for (char in sequence) {
+    val set = sequence.toSet()
+    for (char in set) {
         var count = 0
         for (i in 0 until sequence.length) {
             if (char == sequence[i])
                 count++
         }
-        map[count] = char
+        priorityQueue.add(Node(null, null, char, count))
     }
-    val toSortedMap = map.toSortedMap()
-    for ((_, value) in toSortedMap) {
-        priorityQueue.add(value)
-    }
+
     return priorityQueue
+}
+
+/**
+ * Build a huffman tree
+ */
+fun buildTree(queue: PriorityQueue<Node>): HuffmanTree {
+    val huffmanTree = HuffmanTree()
+    while (queue.size > 1) {
+        val first = queue.poll()
+        val second = queue.poll()
+
+        val new = Node(first, second, null, first.frequency + second.frequency)
+
+
+        queue.add(new)
+    }
+    huffmanTree.root = queue.poll()
+
+    return huffmanTree
+}
+
+/**
+ * Encode sequence to huffman codding
+ */
+fun encode(codes: MutableMap<Char, String>, sequence: String): String {
+    val sb = StringBuilder()
+    for (char in sequence) {
+        sb.append(codes[char])
+    }
+    return sb.toString()
 }
 
 
@@ -73,5 +103,15 @@ fun main() {
     val sequence = scanner.nextLine()
 
     val queue = buildPriorityQueue(sequence)
-    println(queue)
+    val size = queue.size
+    val tree = buildTree(queue)
+    val codes = tree.getCodes()
+    val encodingString = encode(codes, sequence)
+
+
+    println("${size} ${encodingString.length}")
+    for ((key, value) in codes) {
+        println("$key: $value")
+    }
+    println(encodingString)
 }
