@@ -3,10 +3,10 @@ package stepik
 import java.util.*
 import kotlin.collections.ArrayList
 
-data class Line(val data: Int, val number: Int, val side: Char)
+private data class Line(val data: Int, val number: Int, val side: Char)
 
 
-fun findDotes(arr: List<Line>): ArrayList<Int> {
+private fun findDotes(arr: List<Line>): ArrayList<Int> {
     val sortedWith = arr.sortedWith(kotlin.Comparator { o1, o2 ->
         if (o1.data == o2.data) {
             if (o1.side == 'L') return@Comparator -1 else return@Comparator 1
