@@ -1,12 +1,14 @@
 package stepik.dynamicProgramming
 
+import java.io.BufferedReader
+import java.io.InputStreamReader
 import java.lang.StringBuilder
 import java.util.*
 
 private fun solve() {
-    val scanner = Scanner(System.`in`)
-    val n = scanner.nextLine().toInt()
-    val line = scanner.nextLine()
+    val br = BufferedReader(InputStreamReader(System.`in`))
+    val n = br.readLine().toInt()
+    val line = br.readLine()
     var currentIndex = -1
     val array = IntArray(n)
     for (i in 0 until n - 1) {
@@ -17,9 +19,40 @@ private fun solve() {
     }
     array[array.size - 1] = line.substring(currentIndex + 1).toInt()
 
-    val res = countSubSequence(array)
+    val res = countSubSequenceSlow(array)
     println(res)
 }
+
+private fun countSubSequenceSlow(array: IntArray): String {
+    val dArray = IntArray(array.size)
+    val prevArray = IntArray(array.size)
+    for (i in 0 until dArray.size) {
+        dArray[i] = 1
+        prevArray[i] = -1
+        for (j in 0 until i) {
+            if (array[j] >= array[i] && dArray[j] + 1 > dArray[i]) {
+                dArray[i] = dArray[j] + 1
+                prevArray[i] = j
+            }
+        }
+    }
+    val sb = StringBuilder()
+    val max = dArray.max()!!
+    sb.appendln(max)
+
+    var pos = dArray.indexOf(max)
+    val path = Vector<Int>()
+    while (pos != -1) {
+        path.add(pos + 1)
+        pos = prevArray[pos]
+    }
+    path.reverse()
+
+    sb.append(path.joinToString(" "))
+
+    return sb.toString()
+}
+
 
 fun upperBound(array: IntArray, element: Int): Int {
     var low = 0
