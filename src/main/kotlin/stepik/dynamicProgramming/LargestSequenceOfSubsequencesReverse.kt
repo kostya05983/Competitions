@@ -19,7 +19,7 @@ private fun solve() {
     }
     array[array.size - 1] = line.substring(currentIndex + 1).toInt()
 
-    val res = countSubSequenceSlow(array)
+    val res = countSubSequence(array)
     println(res)
 }
 
@@ -84,8 +84,7 @@ private fun countSubSequence(array: IntArray): String {
     pos[0] = -1
     dArray[0] = Int.MIN_VALUE
     for (i in array.size - 1 downTo 0) {
-        var j = upperBound(dArray, array[i])
-        if (j == array.size) j -= 1
+        val j = upperBound(dArray, array[i])
         if (dArray[j - 1] <= array[i] && array[i] <= dArray[j]) {
             dArray[j] = array[i]
             pos[j] = i
@@ -115,7 +114,7 @@ private fun generate() {
 
 
     val start = System.currentTimeMillis()
-    for (i in 0 until 100) {
+    for (i in 0 until 10000) {
         val l = IntArray(n) { random.nextInt() }
         val s = countSubSequence(l)
     }
