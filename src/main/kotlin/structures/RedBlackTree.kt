@@ -1,21 +1,6 @@
 package structures
 
-internal class Node {
-    var left: Node? = null
-    var right: Node? = null
-    var parent: Node? = null
-    var isRed: Boolean = false
-    var value: Int = 0
 
-    constructor(value: Int) {
-        this.value = value
-    }
-
-    constructor(value: Int, isRed: Boolean) {
-        this.value = value
-        this.isRed = isRed
-    }
-}
 
 class RedBlackTree {
     private var root: Node? = null
@@ -46,7 +31,22 @@ class RedBlackTree {
         return null
     }
 
+    private class Node {
+        var left: Node? = null
+        var right: Node? = null
+        var parent: Node? = null
+        var isRed: Boolean = false
+        var value: Int = 0
 
+        constructor(value: Int) {
+            this.value = value
+        }
+
+        constructor(value: Int, isRed: Boolean) {
+            this.value = value
+            this.isRed = isRed
+        }
+    }
 
     fun insert(value: Int) {
         if (root == null) {
