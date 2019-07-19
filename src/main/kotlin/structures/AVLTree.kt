@@ -1,6 +1,7 @@
 package structures
 
 import java.lang.StringBuilder
+import kotlin.math.max
 
 
 /**
@@ -17,9 +18,18 @@ class AVLTree<T : Comparable<T>> {
         var leftChild: Node<T>? = null
         var rightChild: Node<T>? = null
         val value: T
+        var height: Int = 1
 
         constructor(value: T) {
             this.value = value
+            this.height = 1
+        }
+
+        constructor(left: Node<T>?, right: Node<T>?, value: T, height: Int) {
+            this.leftChild = left
+            this.rightChild = right
+            this.value = value
+            this.height = height
         }
     }
 
@@ -37,7 +47,7 @@ class AVLTree<T : Comparable<T>> {
         if (root == null) {
             return 0
         }
-        return 1 + if (root.leftChild != null) height(root.leftChild) else height(root.rightChild)
+        return root.height
     }
 
     /**
@@ -56,6 +66,10 @@ class AVLTree<T : Comparable<T>> {
 
         y!!.rightChild = z
         z.leftChild = t2
+
+        z.height = maxOf(height(z.leftChild), height(z.rightChild)) + 1
+        y.height = maxOf(height(y.leftChild), height(y.rightChild)) + 1
+
         return y
     }
 
@@ -65,6 +79,9 @@ class AVLTree<T : Comparable<T>> {
 
         y!!.leftChild = z
         z.rightChild = t2
+
+        z.height = maxOf(height(z.leftChild), height(z.rightChild)) + 1
+        y.height = maxOf(height(y.leftChild), height(y.rightChild)) + 1
         return y
     }
 
@@ -85,6 +102,9 @@ class AVLTree<T : Comparable<T>> {
             value > node.value -> node.rightChild = insert(node.rightChild, value)
             else -> return node
         }
+
+        //2. after standard insert, update  height
+        node.height = 1 + max(height(node.leftChild), height(node.rightChild))
 
         val balanced = getBalance(node)
 
@@ -119,21 +139,58 @@ class AVLTree<T : Comparable<T>> {
             return node
         }
 
-
-
         when {
             value < node.value -> { //searching value in left subtree
-
+                node.leftChild = delete(node.leftChild, value)
             }
             value > node.value -> { // searching value in right subtree
-
+                node.rightChild = delete(node.rightChild, value)
             }
-            else ->  { //Yea we find value
-
+            else -> { //Yea we find value
+                return if (node.leftChild == null && node.rightChild == null) {
+                    null
+                } else if (node.leftChild == null) {
+                    node.rightChild
+                } else if (node.rightChild == null) {
+                    node.leftChild
+                } else {
+                    val minValue = minValue(node.rightChild!!)
+                    Node(node.leftChild, delete(node.rightChild, minValue), minValue, node.height)
+                }
             }
         }
 
+        node.height = max(height(node.leftChild), height(node.rightChild)) + 1
+
+        val balanced = getBalance(node)
+
+        //left left case
+        if (balanced > 1 && getBalance(node.leftChild) >= 0) {
+            return rightRotate(node)
+        }
+        // right right case
+        if (balanced < -1 && getBalance(node.rightChild) <= 0) {
+            return leftRotate(node)
+        }
+        // left right case
+        if (balanced > 1 && getBalance(node.rightChild) < 0) {
+            node.leftChild = leftRotate(node.leftChild!!)
+            return rightRotate(node)
+        }
+        // right left case
+        if (balanced < -1 && getBalance(node.leftChild) > 0) {
+            node.rightChild = rightRotate(node.rightChild!!)
+            return leftRotate(node)
+        }
         return node
+    }
+
+    private fun minValue(root: Node<T>): T {
+        val tmp = root.leftChild
+        if (tmp != null) {
+            return minValue(tmp)
+        }
+        return root.value
     }
 
 
