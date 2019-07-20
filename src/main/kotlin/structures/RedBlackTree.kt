@@ -1,126 +1,126 @@
 package structures
 
+import java.lang.StringBuilder
+import kotlin.math.max
 
 
-class RedBlackTree {
-    private var root: Node? = null
+class RedBlackTree<T : Comparable<T>> {
+    private var root: Node<T>? = null
     private var blackHeight = 0
     private var whiteHeight = 0
 
-    private fun binaryInsert(value: Int): Node? {
-        var tmp = root
-        while (tmp != null) {
-            if (value < tmp.value) {
-                if (tmp.left == null) {//it's leaf
-                    tmp.left = Node(value, true)
-                    tmp.left!!.parent = tmp
-                    return tmp.left
-                } else {
-                    tmp = tmp.left
-                }
-            } else {
-                if (tmp.right == null) {
-                    tmp.right = Node(value, true)
-                    tmp.right!!.parent = tmp
-                    return tmp.right
-                } else {
-                    tmp = tmp.right
-                }
-            }
-        }
-        return null
+    fun height(): Int {
+        return height(root)
     }
 
-    private class Node {
-        var left: Node? = null
-        var right: Node? = null
-        var parent: Node? = null
-        var isRed: Boolean = false
-        var value: Int = 0
+    private fun height(root: Node<T>?): Int {
+        if (root == null) {
+            return 0
+        }
+        return root.height
+    }
 
-        constructor(value: Int) {
+    private class Node<T> {
+        var left: Node<T>? = null
+        var right: Node<T>? = null
+        var isRed: Boolean = false
+        var value: T
+        var height: Int = 1
+
+        constructor(value: T) {
             this.value = value
         }
 
-        constructor(value: Int, isRed: Boolean) {
+        constructor(value: T, isRed: Boolean) {
             this.value = value
             this.isRed = isRed
         }
     }
 
-    fun insert(value: Int) {
-        if (root == null) {
-            root = Node(value, false) //root only can be black
-            blackHeight++
-            return
+    private fun getBalance(node: Node<T>?): Int {
+        if (node == null) {
+            return 0
         }
-        val tmp = binaryInsert(value)
-        if (tmp!=null && !tmp.parent!!.isRed && tmp != root) {
-            if (tmp.parent!!.parent!=null && tmp.parent!!.parent!!.right!!.isRed) { //TODO is uncle always right? case a
-                tmp.parent!!.isRed = false //Change color of parent to black
-                tmp.parent!!.parent!!.right!!.isRed = false // Change color of uncle to black
-                var x = tmp.parent!!.parent
-                while (x != null) {
-                    x.isRed = true
-                    x = x.parent
-                }
-            } else if (tmp.parent!!.parent!=null && !tmp.parent!!.parent!!.right!!.isRed) { //Uncle is black
-                //next four cases
-                val grand = tmp.parent!!.parent
-                val parent = tmp.parent
-                if (grand?.left != null && grand.left == parent) { //LEFT
-                    if (parent?.left != null && parent.left == tmp) { //LEFT LEFT CASE
-                        val grandGrand = grand.parent
-                        grand.parent = parent //Right rotation of grand
-                        grand.left = parent.right
-                        parent.right = grand
-                        parent.parent = grandGrand
 
-                        parent.isRed = false
-                        grand.isRed = true //Colors
-                    } else { //LEFT RIGHT CASE
-                        //left rotate
-                        val leftChild = tmp.left
-                        tmp.parent = grand
-                        grand.left = tmp
-                        tmp.left = parent
-                        parent!!.parent = tmp
-                        parent.right = leftChild
+        return height(node.left) - height(node.right)
+    }
 
-                        //Left left case apply
-                        val rightChild = tmp.right
-                        grand.parent = tmp
-                        grand.left = rightChild
-                        tmp.right = grand
-                    }
-                } else { //RIGHT
-                    if (parent?.right != null && parent.right == tmp) { // RIGHT RIGHT
-                        //left rotate
-                        val leftChild = parent.left
-                        val grandgrand = grand?.parent
-                        grand?.parent = parent
-                        parent.left = grand
-                        grand?.right = leftChild
-                        parent.parent = grandgrand
+    private fun leftRotate(g: Node<T>): Node<T> {
+        val rightChild = g.right
+        val t3 = rightChild!!.left
 
-                    } else { //RIGHT LEFT
-                        //right rotate p
-                        val rightChild = tmp.right
-                        tmp.parent = grand
-                        tmp.right = parent
-                        parent?.parent = tmp
-                        parent?.left = rightChild
+        rightChild.left = g
+        g.right = t3
+        g.isRed = true
+        rightChild.isRed = false
+        return rightChild
+    }
 
-                        //Apply right right case
-                        val grandGrand = grand?.parent
-                        tmp.parent = grandGrand
-                        grand?.parent = tmp
-                        val leftChild = tmp.left
-                        grand?.right = leftChild
-                        tmp.left = grand
-                    }
-                }
-            }
+    private fun rightRotate(g: Node<T>): Node<T> {
+        val leftChild = g.left
+        val t3 = leftChild!!.right
+
+        leftChild.right = g
+        g.left = t3
+        g.isRed = true
+        leftChild.isRed = false
+        return leftChild
+    }
+
+    fun insert(value: T) {
+        root = insert(root, value)
+    }
+
+    private fun insert(node: Node<T>?, value: T): Node<T> {
+        if (node == null) {
+            return Node(value, false)
         }
+
+        //1 Standard insertion
+        when {
+            value < node.value -> node.left = insert(node.left, value)
+            value > node.value -> node.right = insert(node.right, value)
+            else -> //similar value not accept
+                return node
+        }
+
+        //2 update height
+        node.height = max(height(node.left), height(node.right)) + 1
+
+        if (!isRed(node.left) && isRed(node.right)) {
+            return leftRotate(node)
+        } else if (isRed(node.left) && isRed(node.left?.left)) {
+            return rightRotate(node)
+        } else if (isRed(node.left) && isRed(node.right)) {
+            flipColors(node)
+        }
+        return node
+    }
+
+    private fun flipColors(node: Node<T>) {
+        node.isRed = !node.isRed
+        node.left!!.isRed = !node.left!!.isRed
+        node.right!!.isRed = !node.right!!.isRed
+    }
+
+    private fun isRed(node: Node<T>?): Boolean {
+        if (node == null) {
+            return false
+        }
+        return node.isRed
+    }
+
+    private fun preOrder(node: Node<T>?, sb: StringBuilder) {
+        if (node != null) {
+            sb.append(node.value).append(" ")
+            preOrder(node.left, sb)
+            preOrder(node.right, sb)
+        }
+    }
+
+    fun preOrder(): String {
+        val sb = StringBuilder()
+        preOrder(root, sb)
+        return sb.toString()
     }
 }
