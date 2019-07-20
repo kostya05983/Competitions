@@ -1,4 +1,4 @@
-package geeksForGeeks
+package geeks.For.geeks.hashing
 
 import kotlin.math.max
 

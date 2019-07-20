@@ -1,5 +1,6 @@
-package geeksForGeeks
+package geeks.For.geeks
 
+import geeks.For.geeks.hashing.BinaryTreeInVerticalOrder
 import org.junit.jupiter.api.Test
 
 class BinaryTreeInVerticalOrderTest {
