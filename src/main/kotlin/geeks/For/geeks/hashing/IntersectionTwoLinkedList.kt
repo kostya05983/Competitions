@@ -11,7 +11,6 @@ class IntersectionTwoLinkedList(list1: LinkedList<Int>, private val list2: Linke
         hash.addAll(list1)
     }
 
-
     fun findIntersection(): String {
         val sb = StringBuilder()
 
