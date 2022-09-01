@@ -26,12 +26,3 @@ dependencies {
     testCompile("org.junit.jupiter:junit-jupiter:5.5.1")
     test.useJUnitPlatform()
 }
-
-jar {
-    manifest { attributes 'Main-Class': 'demo.HelloWorldKt' }
-    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
-}
-
-task wrapper(type: Wrapper) {
-    gradleVersion = "4.10.2"
-}
