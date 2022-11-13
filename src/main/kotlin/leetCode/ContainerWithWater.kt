@@ -3,10 +3,20 @@ package leetCode
 class ContainerWithWater {
     fun maxArea(height: IntArray): Int {
         var result = 0
-        for (i in height.indices) {
-            for (j in i until height.size) {
-                val minHeight = minOf(height[i], height[j])
-                result = maxOf(result, minHeight * (j - i))
+        var left = 0
+        var right = height.size - 1
+
+        while (left != right) {
+            val leftHeight = height[left]
+            val rightHeight = height[right]
+            val distance = (right - left)
+
+            result = maxOf(result, minOf(leftHeight, rightHeight) * distance)
+
+            if (leftHeight < rightHeight) {
+                left++
+            } else {
+                right--
             }
         }
 
@@ -15,5 +25,5 @@ class ContainerWithWater {
 }
 
 fun main(args: Array<String>) {
-    println(ContainerWithWater().maxArea(intArrayOf(1, 1)))
+    println(ContainerWithWater().maxArea(intArrayOf(1,1)))
 }
