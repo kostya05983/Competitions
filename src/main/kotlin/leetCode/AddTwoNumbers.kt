@@ -1,6 +1,6 @@
 package leetCode
 
-private data class ListNode(
+data class ListNode(
     var `val`: Int,
     var next: ListNode?
 ) {
