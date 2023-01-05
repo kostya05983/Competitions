@@ -5,6 +5,10 @@ class ListNode(
     var next: ListNode?
 ) {
     constructor(remain: Int) : this(next = null, `val` = remain)
+
+    override fun toString(): String {
+        return "$`val`, next=$next"
+    }
 }
 
 private class Solution {
