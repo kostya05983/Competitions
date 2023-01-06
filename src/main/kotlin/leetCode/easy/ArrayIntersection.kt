@@ -10,9 +10,8 @@ class ArrayIntersection {
         val result = mutableSetOf<Int>()
 
         for (element in firstSet) {
-            val number = element
-            if (secondSet.contains(number)) {
-                result.add(number)
+            if (secondSet.contains(element)) {
+                result.add(element)
             }
         }
 
