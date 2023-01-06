@@ -4,6 +4,8 @@ class PowerOfFour {
     private val mask = 0b01010101010101010101010101010101
 
     fun isPowerOfFour(n: Int): Boolean {
+        if (n == 0) return false
+
         val previous = n - 1
         val isOneDigit = n.and(previous) == 0
 
