@@ -1,6 +1,7 @@
 package aoe2022
 
 import java.io.File
+import java.util.*
 
 class Day3 {
     fun solve(): Int {
@@ -35,8 +36,35 @@ class Day3 {
 
         return total.sumBy { it.second }
     }
+
+    fun solve2(): Int {
+        val input =
+            File("/home/kostya05983/Projects/github/Competitions/src/main/resources/aoe/input_day_3.txt").readLines()
+
+        val total = mutableListOf<Pair<Int, Int>>()
+
+        val frequencies = hashMapOf<Char, Int>()
+        for (j in input.indices) {
+            val line = input[j]
+
+            if (j.rem(3) == 0) {
+                if (frequencies.isNotEmpty()) {
+                    total.add(Pair(j / 3, frequencies.maxBy { it.value }?.key?.toPriority()!!))
+                }
+                frequencies.clear()
+            }
+        }
+
+        return total.sumBy { it.second }
+    }
+
+    private fun Char.toPriority(): Int = if (isUpperCase()) {
+        toInt() - 38
+    } else {
+        toInt() - 96
+    }
 }
 
 fun main(args: Array<String>) {
-    println(Day3().solve())
+    println(Day3().solve2())
 }
