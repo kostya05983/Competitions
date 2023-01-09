@@ -43,16 +43,32 @@ class Day3 {
 
         val total = mutableListOf<Pair<Int, Int>>()
 
-        val frequencies = hashMapOf<Char, Int>()
+        var set = hashSetOf<Char>()
         for (j in input.indices) {
             val line = input[j]
 
             if (j.rem(3) == 0) {
-                if (frequencies.isNotEmpty()) {
-                    total.add(Pair(j / 3, frequencies.maxBy { it.value }?.key?.toPriority()!!))
+                for (element in set) {
+                    total.add(Pair(j / 3, element.toPriority()))
                 }
-                frequencies.clear()
+
+                set.clear()
+                for (ch in line) {
+                    set.add(ch)
+                }
+                continue
             }
+
+            val newSet = hashSetOf<Char>()
+            for (ch in line) {
+                if (set.contains(ch)) {
+                    newSet.add(ch)
+                }
+            }
+            set = newSet
+        }
+        for (element in set) {
+            total.add(Pair(100, element.toPriority()))
         }
 
         return total.sumBy { it.second }
