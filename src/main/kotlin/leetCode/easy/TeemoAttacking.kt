@@ -4,15 +4,7 @@ class TeemoAttacking {
     fun findPoisonedDuration(timeSeries: IntArray, duration: Int): Int {
         var result = 0
         for (i in 1 until timeSeries.size) {
-            val left = timeSeries[i - 1]
-            val right = timeSeries[i]
-            val diff = right - left
-
-            result += if (diff > duration) {
-                duration
-            } else {
-                diff
-            }
+            result += minOf(duration, timeSeries[i] - timeSeries[i - 1])
         }
         result += duration
 
