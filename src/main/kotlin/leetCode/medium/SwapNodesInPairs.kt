@@ -1,4 +1,4 @@
-package leetCode.middle
+package leetCode.medium
 
 import leetCode.ListNode
 
