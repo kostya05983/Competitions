@@ -1,72 +1,38 @@
 package leetCode.easy
 
-import java.util.Stack
-
 class BinaryTreePaths {
 
-    enum class VisitedTreeState {
-        NONE,
-        LEFT,
-        BOTH
-    }
-
-    data class Node(
-        val node: TreeNode,
-        var state: VisitedTreeState,
-        val length: Int
-    )
-
     fun binaryTreePaths(root: TreeNode?): List<String> {
-        if (root == null) return emptyList()
-
         val result = mutableListOf<String>()
+        if (root == null) return result
 
         val sb = StringBuilder()
-        sb.append(root.`val`)
 
-        val stack = Stack<Node>()
-        stack.push(Node(root, VisitedTreeState.NONE, sb.length))
-
-        while (stack.isNotEmpty()) {
-            val node = stack.peek()
-            val treeNode = node.node
-
-            sb.setLength(node.length)
-
-            if (treeNode.left == null && treeNode.right == null) {
-                result.add(sb.toString())
-
-                stack.pop()
-                continue
-            }
-
-            val left = treeNode.left
-            if (left != null && node.state == VisitedTreeState.NONE) {
-                node.state = VisitedTreeState.LEFT
-
-                sb.append("->")
-                sb.append(left.`val`)
-
-                stack.add(Node(left, VisitedTreeState.NONE, sb.length))
-
-                continue
-            }
-
-            val right = treeNode.right
-            if (right != null && node.state != VisitedTreeState.BOTH) {
-                node.state = VisitedTreeState.BOTH
-
-                sb.append("->")
-                sb.append(right.`val`)
-
-                stack.add(Node(right, VisitedTreeState.NONE, sb.length))
-
-                continue
-            }
-            stack.pop()
-        }
+        traversal(root, sb, result)
 
         return result
+    }
+
+    private fun traversal(root: TreeNode, sb: StringBuilder, result: MutableList<String>) {
+        sb.append(root.`val`)
+
+        if (root.left == null && root.right == null) {
+            result.add(sb.toString())
+            return
+        }
+
+        if (root.left != null) {
+            val length = sb.length
+            sb.append("->")
+            traversal(root.left!!, sb, result)
+            sb.setLength(length)
+        }
+        if (root.right != null) {
+            val length = sb.length
+            sb.append("->")
+            traversal(root.right!!, sb, result)
+            sb.setLength(length)
+        }
     }
 }
 
