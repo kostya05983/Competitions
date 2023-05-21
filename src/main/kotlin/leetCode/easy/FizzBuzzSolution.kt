@@ -1,4 +1,4 @@
-package leetCode
+package leetCode.easy
 
 class FizzBuzzSolution {
     fun fizzBuzz(n: Int): List<String> {

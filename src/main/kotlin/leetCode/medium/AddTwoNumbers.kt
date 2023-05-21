@@ -1,4 +1,4 @@
-package leetCode
+package leetCode.medium
 
 class ListNode(
     var `val`: Int,

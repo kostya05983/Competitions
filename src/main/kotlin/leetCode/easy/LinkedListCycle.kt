@@ -1,6 +1,6 @@
 package leetCode.easy
 
-import leetCode.ListNode
+import leetCode.medium.ListNode
 
 class LinkedListCycle {
     fun hasCycle(head: ListNode?): Boolean {

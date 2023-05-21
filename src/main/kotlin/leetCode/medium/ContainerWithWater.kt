@@ -1,4 +1,4 @@
-package leetCode
+package leetCode.medium
 
 class ContainerWithWater {
     fun maxArea(height: IntArray): Int {

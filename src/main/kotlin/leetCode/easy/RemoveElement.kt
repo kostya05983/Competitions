@@ -1,4 +1,4 @@
-package leetCode
+package leetCode.easy
 
 class RemoveElement {
     fun removeElement(nums: IntArray, `val`: Int): Int {

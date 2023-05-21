@@ -1,5 +1,6 @@
-package leetCode
+package leetCode.easy
 
+import leetCode.medium.ListNode
 
 class MergeTwoSortedList {
     fun mergeTwoLists(list1: ListNode?, list2: ListNode?): ListNode? {

@@ -1,7 +1,5 @@
 package leetCode.medium
 
-import leetCode.ListNode
-
 class SwapNodesInPairs {
     fun swapPairs(head: ListNode?): ListNode? {
         if (head?.next == null) return head

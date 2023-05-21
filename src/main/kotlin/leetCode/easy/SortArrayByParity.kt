@@ -1,4 +1,4 @@
-package leetCode
+package leetCode.easy
 
 class SortArrayByParity {
     fun sortArrayByParity(nums: IntArray): IntArray {

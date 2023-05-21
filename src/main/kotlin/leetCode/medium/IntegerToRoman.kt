@@ -1,4 +1,4 @@
-package leetCode
+package leetCode.medium
 
 class IntegerToRoman {
 

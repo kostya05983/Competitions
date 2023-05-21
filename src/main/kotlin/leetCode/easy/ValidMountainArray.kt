@@ -1,4 +1,4 @@
-package leetCode
+package leetCode.easy
 
 class ValidMountainArray {
     fun validMountainArray(arr: IntArray): Boolean {

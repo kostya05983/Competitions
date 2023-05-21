@@ -1,4 +1,4 @@
-package leetCode
+package leetCode.easy
 
 class HeightChecker {
     fun heightChecker(heights: IntArray): Int {

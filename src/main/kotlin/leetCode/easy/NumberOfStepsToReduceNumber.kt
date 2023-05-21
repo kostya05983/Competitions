@@ -1,4 +1,4 @@
-package leetCode
+package leetCode.easy
 
 class NumberOfStepsToReduceNumber {
     fun numberOfSteps(num: Int): Int {

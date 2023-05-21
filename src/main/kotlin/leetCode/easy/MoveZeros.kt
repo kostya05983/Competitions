@@ -1,4 +1,4 @@
-package leetCode
+package leetCode.easy
 
 class MoveZeros {
     fun moveZeroes(nums: IntArray): Unit {

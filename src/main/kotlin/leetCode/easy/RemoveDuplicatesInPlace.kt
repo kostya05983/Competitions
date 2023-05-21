@@ -1,4 +1,4 @@
-package leetCode
+package leetCode.easy
 
 class RemoveDuplicatesInPlace {
     fun removeDuplicates(nums: IntArray): Int {

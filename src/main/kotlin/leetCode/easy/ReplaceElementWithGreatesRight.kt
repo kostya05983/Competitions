@@ -1,4 +1,4 @@
-package leetCode
+package leetCode.easy
 
 class ReplaceElementWithGreatesRight {
     fun replaceElements(arr: IntArray): IntArray {

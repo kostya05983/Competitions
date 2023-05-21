@@ -1,4 +1,4 @@
-package leetCode
+package leetCode.easy
 
 class SquaresOfSortedArray {
     fun sortedSquares(nums: IntArray): IntArray {

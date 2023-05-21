@@ -1,4 +1,4 @@
-package leetCode
+package leetCode.easy
 
 class FindAllNumbersDisapperedInArray {
     fun findDisappearedNumbers(nums: IntArray): List<Int> {

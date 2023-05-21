@@ -1,4 +1,4 @@
-package leetCode
+package leetCode.medium
 
 class ReverseInteger {
     fun reverse(x: Int): Int {

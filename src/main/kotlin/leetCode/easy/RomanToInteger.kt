@@ -1,4 +1,4 @@
-package leetCode
+package leetCode.easy
 
 class RomanToInteger {
     fun romanToInt(s: String): Int {

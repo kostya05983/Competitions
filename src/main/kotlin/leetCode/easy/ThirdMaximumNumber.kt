@@ -1,4 +1,4 @@
-package leetCode
+package leetCode.easy
 
 class ThirdMaximumNumber {
     fun thirdMax(nums: IntArray): Int {
