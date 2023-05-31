@@ -2,11 +2,12 @@ package leetCode.easy
 
 class KLengthApart {
     fun kLengthApart(nums: IntArray, k: Int): Boolean {
-        var index = -1
-        for (i in nums.indices) {
+        var index = nums.indexOfFirst { it == 1 }
+
+        for (i in index + 1 until nums.size) {
             if (nums[i] != 1) continue
 
-            if (index!=-1 && i - index <= k)
+            if (i - index <= k)
                 return false
 
             index = i
