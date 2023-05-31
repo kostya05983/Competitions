@@ -74,7 +74,7 @@ class LargestMergeOfTwoStrings {
                     }
                 }
 
-                else -> throw IllegalStateException("Fuck")
+                else -> throw IllegalStateException("Wrong state")
             }
         }
 
