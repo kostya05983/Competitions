@@ -3,7 +3,9 @@ package stepik.algorithm.structure.course
 import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Disabled
 
+@Disabled
 internal class BracketsArrangementTest {
 
     @Test

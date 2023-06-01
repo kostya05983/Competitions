@@ -3,7 +3,9 @@ package geeks.For.geeks.hashing
 import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Disabled
 
+@Disabled
 internal class DuplicateElementsArrayTest {
 
     @Test

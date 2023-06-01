@@ -9,17 +9,13 @@ class KRadiusSubArrayAverages {
         var averageRem = 0
 
         for (i in nums.indices) {
-            val num = nums[i]
-            val numDivided = num / windowSize
-            average += numDivided
-            averageRem += num - numDivided * windowSize
+            average += nums[i].div(windowSize)
+            averageRem += nums[i].rem(windowSize)
 
             if (i >= windowOffset) {
-                result[i - k] = average + averageRem / windowSize
-                val left = nums[i - windowOffset]
-                val leftDivided = left / windowSize
-                average -= leftDivided
-                averageRem -= left - leftDivided * windowSize
+                result[i - k] = average + averageRem
+                average -= nums[i - windowOffset] / windowSize
+                averageRem -= nums[i - windowOffset].rem(windowSize)
             }
         }
 
