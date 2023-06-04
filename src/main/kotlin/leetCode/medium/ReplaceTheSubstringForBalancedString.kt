@@ -32,6 +32,7 @@ class ReplaceTheSubstringForBalancedString {
 
         return minLength
     }
+
 }
 
 fun main(args: Array<String>) {
