@@ -19,7 +19,6 @@ class BoatsToSavePeople {
             right--
         }
         val map = TreeMap<Int,Int>()
-        map.flo
 
         return boatsCount
     }
