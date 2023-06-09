@@ -4,107 +4,84 @@ import org.junit.jupiter.api.Assertions.assertEquals
 
 class CountNodesWithHighestScore {
     data class BinaryTreeNode(
-        var subtreeSize: Int,
-        val number: Int,
-        var left: BinaryTreeNode?,
-        var right: BinaryTreeNode?,
-        var parent: BinaryTreeNode?
+        var subtreeSize: Int = 0,
+        var score: Int = 0,
+        var left: BinaryTreeNode? = null,
+        var right: BinaryTreeNode? = null
     )
 
     class Tree(
-        parents: IntArray
+        private val parents: IntArray
     ) {
-        lateinit var root: BinaryTreeNode
+        private val treeArray: Array<BinaryTreeNode>
+        private val size: Int
 
         init {
-            val map = mutableMapOf<Int, BinaryTreeNode>()
-            for (i in parents.indices) {
-                map[i] = BinaryTreeNode(1, i, null, null, null)
+            val arr = Array(parents.size) {
+                BinaryTreeNode()
             }
 
-            for (i in parents.indices) {
-                if (parents[i] == -1) {
-                    root = map[i]!!
+            for (i in 1 until parents.size) {
+                val parentId = parents[i]
+
+                if (arr[parentId].left == null) {
+                    arr[parentId].left = arr[i]
                 } else {
-                    val ptr = requireNotNull(map[parents[i]])
-                    val child = requireNotNull(map[i])
-                    if (ptr.left != null) {
-                        ptr.right = child
-                    } else {
-                        ptr.left = child
-                    }
-                    child.parent = ptr
-
-                    val childSize = child.subtreeSize
-
-                    var secondPtr = ptr
-                    while (secondPtr.parent != null) {
-                        secondPtr.subtreeSize += childSize
-                        secondPtr = secondPtr.parent!!
-                    }
-                    secondPtr.subtreeSize += childSize
+                    arr[parentId].right = arr[i]
                 }
             }
+
+            initSize(arr[0])
+
+            treeArray = arr
+            size = parents.size
         }
 
-        var maxCount = 1
+        private fun initSize(root: BinaryTreeNode?): Int {
+            if (root == null) return 0
 
-        fun highestScore(root: BinaryTreeNode = this.root, max: Int = 0): Int {
-            var max = max
+            val size = initSize(root.left) + initSize(root.right) + 1
+            root.subtreeSize = size
+            return size
+        }
 
-            val diffRoot = if (this.root != root) (this.root.subtreeSize - root.subtreeSize) else 1
+        fun highestScore(): Int {
+            var highest = 0
+            for (i in parents.indices) {
+                var score = 1
+                val leftSize = treeArray[i].left?.subtreeSize ?: 0
+                val rightSize = treeArray[i].right?.subtreeSize ?: 0
+                val restSize = size - 1 - leftSize - rightSize
 
-            val left = root.left
-            val right = root.right
+                if (leftSize > 0) {
+                    score *= leftSize
+                }
 
-            //leaf case
-            if (left == null && right == null) {
-                val score = this.root.subtreeSize - 1
+                if (rightSize > 0) {
+                    score *= rightSize
+                }
 
-                if (max == score) {
-                    maxCount++
-                } else if (max < score) {
-                    max = score
-                    maxCount = 1
+                if (restSize > 0) {
+                    score *= restSize
+                }
+                treeArray[i].score = score
+                highest = maxOf(highest, score)
+            }
+
+            var count = 0
+            for (i in parents.indices) {
+                if (treeArray[i].score == highest) {
+                    count++
                 }
             }
 
-            if (left != null && right == null || left == null && right != null) {
-                val score = diffRoot * requireNotNull(
-                    root.left?.subtreeSize
-                        ?: root.right?.subtreeSize
-                )
-
-                if (max == score) {
-                    maxCount++
-                } else if (max < score) {
-                    max = score
-                    maxCount = 1
-                }
-            }
-
-            if (left != null && right != null) {
-                val score = diffRoot * left.subtreeSize * right.subtreeSize
-
-                if (max == score) {
-                    maxCount++
-                } else if (max < score) {
-                    max = score
-                    maxCount = 1
-                }
-            }
-
-            max = maxOf(root.left?.let { highestScore(it, max) } ?: 0, max)
-            max = maxOf(root.right?.let { highestScore(it, max) } ?: 0, max)
-
-            return max
+            return count
         }
     }
 
     fun countHighestScoreNodes(parents: IntArray): Int {
         val tree = Tree(parents)
-        tree.highestScore()
-        return tree.maxCount
+        return tree.highestScore()
     }
 }
 
