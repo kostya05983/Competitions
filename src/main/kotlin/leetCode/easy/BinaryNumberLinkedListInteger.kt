@@ -2,26 +2,15 @@ package leetCode.easy
 
 import leetCode.medium.ListNode
 import org.junit.jupiter.api.Assertions.assertEquals
-import kotlin.math.pow
 
 class BinaryNumberLinkedListInteger {
     fun getDecimalValue(head: ListNode?): Int {
         var current = head
-        var size = 0
-        while (current != null) {
-            current = current.next
-            size++
-        }
-
-        current = head
         var number = 0
-        var degree = size - 1
+
         while (current != null) {
-            if (current.`val` == 1) {
-                number += 2.0.pow(degree.toDouble()).toInt()
-            }
+            number = number * 2 + current.`val`
             current = current.next
-            degree--
         }
 
         return number
