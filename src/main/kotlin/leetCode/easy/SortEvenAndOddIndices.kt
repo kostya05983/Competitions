@@ -8,7 +8,7 @@ class SortEvenAndOddIndices {
         val even = PriorityQueue<Int> { a, b -> (a - b) }
         val odd = PriorityQueue<Int> { a, b -> (b - a) }
 
-        for (i in 0 until nums.size) {
+        for (i in nums.indices) {
             val num = nums[i]
             if (i.rem(2) == 0) {
                 even.add(num)
