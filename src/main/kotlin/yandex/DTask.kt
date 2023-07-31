@@ -15,6 +15,8 @@ fun recursion(remainsLeft: Int, remainsRight: Int, current: String, sb: StringBu
     }
 }
 
+//4 - 8
+//5 - 18
 fun main(args: Array<String>) {
     val n = readLine()?.toInt()!!
 
