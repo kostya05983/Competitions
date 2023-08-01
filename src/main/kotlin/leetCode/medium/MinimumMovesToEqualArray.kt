@@ -24,4 +24,7 @@ fun main(args: Array<String>) {
 
     val example2 = solution.minMoves2(intArrayOf(1, 10, 2, 9))
     assertEquals(16, example2)
+
+    val example3 = solution.minMoves2(intArrayOf(1,2,140,3))
+    println(example3)
 }
