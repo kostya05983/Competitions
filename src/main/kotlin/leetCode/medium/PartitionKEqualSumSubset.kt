@@ -53,7 +53,7 @@ fun main(args: Array<String>) {
     assertEquals(true, example4)
 
 //    (1,2)(2)
-    val example5 = solution.canPartitionKSubsets(intArrayOf(1,2,2,2,2), 3)
+    val example5 = solution.canPartitionKSubsets(intArrayOf(1, 2, 2, 2, 2), 3)
     assertEquals(false, example5)
 
     //7167 (5524, ) (383+4485+2299)
@@ -78,4 +78,9 @@ fun main(args: Array<String>) {
         ), 4
     )
     assertEquals(true, example6)
+
+    val example7 = solution.canPartitionKSubsets(
+        intArrayOf(1,2,3,5), 2
+    )
+    assertEquals(false, example7)
 }
