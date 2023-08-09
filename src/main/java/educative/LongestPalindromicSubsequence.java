@@ -1,4 +1,4 @@
-package yandex;
+package educative;
 
 public class LongestPalindromicSubsequence {
 

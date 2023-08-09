@@ -1,6 +1,4 @@
-package yandex;
-
-import java.util.HashSet;
+package educative;
 
 public class ShortestCommonSuperSequence {
     public static int findSCSLength(String str1, String str2) {
