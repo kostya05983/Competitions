@@ -1,6 +1,7 @@
 package leetCode.medium
 
 import org.junit.jupiter.api.Assertions.assertEquals
+import java.lang.Long
 
 class MinimumOperationsToMakeIntegerZero {
     fun makeTheIntegerZero(num1: Int, num2: Int): Int {
@@ -16,7 +17,7 @@ class MinimumOperationsToMakeIntegerZero {
         for (i in 0 until 61) {
             val target = num1 - i * num2.toLong()
 
-            val bitsCount = countBits(target)
+            val bitsCount = Long.bitCount(target)
 
             if (target >= 0 && bitsCount <= i && i <= target) {
                 return i
@@ -24,17 +25,6 @@ class MinimumOperationsToMakeIntegerZero {
         }
 
         return -1
-    }
-
-    private fun countBits(num: Long): Int {
-        var remain = num
-        var count = 0L
-        while (remain > 0) {
-            count += remain.and(1)
-            remain = remain.shr(1)
-        }
-
-        return count.toInt()
     }
 }
 
