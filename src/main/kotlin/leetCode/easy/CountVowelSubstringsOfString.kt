@@ -13,9 +13,10 @@ class CountVowelSubstringsOfString {
         var left = 0
         var right: Int
 
+        val windowSet = mutableSetOf<Char>()
         while (left < word.length) {
+            windowSet.clear()
             val ch = word[left]
-            val windowSet = mutableSetOf<Char>()
             if (ch !in vowelSet) {
                 left++
                 continue
