@@ -69,32 +69,32 @@ class CountKSubsequencesStringWithMaximumBeauty {
 
 fun main(args: Array<String>) {
     val solution = CountKSubsequencesStringWithMaximumBeauty()
-//    val example1 = solution.countKSubsequencesWithMaxBeauty("bcca", 2)
-//    assertEquals(4, example1)
-//////
-//    val example2 = solution.countKSubsequencesWithMaxBeauty("abbcd", 4)
-//    assertEquals(2, example2)
-//
-//    val example3 = solution.countKSubsequencesWithMaxBeauty("abc", 2)
-//    assertEquals(3, example3)
+    val example1 = solution.countKSubsequencesWithMaxBeauty("bcca", 2)
+    assertEquals(4, example1)
 ////
-//    val example4 = solution.countKSubsequencesWithMaxBeauty("auy", 1)
-//    assertEquals(3, example4)
-//
-//    val example5 = solution.countKSubsequencesWithMaxBeauty("dfyq", 2)
-//    assertEquals(6, example5)
-//
-//    val example6 = solution.countKSubsequencesWithMaxBeauty("abbcd", 4)
-//    assertEquals(2, example6)
-//
-//    val example7 = solution.countKSubsequencesWithMaxBeauty("dpdemprzvz", 1)
-//    assertEquals(6, example7)
-//
-//    val example8 = solution.countKSubsequencesWithMaxBeauty("jyuhiyzjuk", 2)
-//    assertEquals(12, example8)
+    val example2 = solution.countKSubsequencesWithMaxBeauty("abbcd", 4)
+    assertEquals(2, example2)
 
-//    val example9 = solution.countKSubsequencesWithMaxBeauty("iewvwmocnrqfuxa", 12)
-//    assertEquals(156, example9)
+    val example3 = solution.countKSubsequencesWithMaxBeauty("abc", 2)
+    assertEquals(3, example3)
+//
+    val example4 = solution.countKSubsequencesWithMaxBeauty("auy", 1)
+    assertEquals(3, example4)
+
+    val example5 = solution.countKSubsequencesWithMaxBeauty("dfyq", 2)
+    assertEquals(6, example5)
+
+    val example6 = solution.countKSubsequencesWithMaxBeauty("abbcd", 4)
+    assertEquals(2, example6)
+
+    val example7 = solution.countKSubsequencesWithMaxBeauty("dpdemprzvz", 1)
+    assertEquals(6, example7)
+
+    val example8 = solution.countKSubsequencesWithMaxBeauty("jyuhiyzjuk", 2)
+    assertEquals(12, example8)
+
+    val example9 = solution.countKSubsequencesWithMaxBeauty("iewvwmocnrqfuxa", 12)
+    assertEquals(156, example9)
 
     val example10 = solution.countKSubsequencesWithMaxBeauty(
         "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
