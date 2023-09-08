@@ -59,8 +59,16 @@ class Randomizer {
     fun remove(value: Int) {
         val index = requireNotNull(valueToIndex[value]) { "Значение не существует" }
 
-        indexToValue.remove(index)
-        valueToIndex.remove(value)
+        if (index == size-1) {
+            indexToValue.remove(index)
+            valueToIndex.remove(value)
+        } else {
+            val lastValue = indexToValue[size-1]
+            
+            indexToValue.put(index, lastValue)
+            valueToIndex.put(lastValue, index)
+        }
+        
         size--
     }
 }
