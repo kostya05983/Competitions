@@ -39,7 +39,7 @@ class Randomizer {
     fun add(value: Int) {
         if (valueToIndex.containsKey(value)) return
 
-        val index = valueToIndex.size()
+        val index = valueToIndex.size
         valueToIndex.put(value, index)
         indexToValue.put(index, value)
     }
@@ -49,27 +49,27 @@ class Randomizer {
     }
 
     fun getRandom(): Int {
-        require(size != 0) { "В рандомайзере нет чисел" }
+        require(valueToIndex.size != 0) { "В рандомайзере нет чисел" }
 
-        val randomIndex = Random.nextInt(0, valueToIndex.size() - 1)
+        val randomIndex = Random.nextInt(0, valueToIndex.size - 1)
         return indexToValue[randomIndex]!!
     }
 
     fun remove(value: Int) {
         val index = requireNotNull(valueToIndex[value]) { "Значение не существует" }
 
-        if (index == size-1) {
+        if (index == valueToIndex.size - 1) {
             indexToValue.remove(index)
             valueToIndex.remove(value)
         } else {
-            val size = valueToIndex.size()
-            val lastValue = indexToValue[size - 1]
+            val size = valueToIndex.size
+            val lastValue = indexToValue[size - 1]!!
 
             indexToValue.remove(size - 1)
             valueToIndex.remove(lastValue)
-            
-            indexToValue.put(index, lastValue)
-            valueToIndex.put(lastValue, index)
+
+            indexToValue[index] = lastValue
+            valueToIndex[lastValue] = index
         }
     }
 }
