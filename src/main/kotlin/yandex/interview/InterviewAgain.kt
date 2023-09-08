@@ -64,6 +64,9 @@ class Randomizer {
             valueToIndex.remove(value)
         } else {
             val lastValue = indexToValue[size-1]
+
+            indexToValue.remove(size-1)
+            valueToIndex.remove(lastValue)
             
             indexToValue.put(index, lastValue)
             valueToIndex.put(lastValue, index)
