@@ -35,7 +35,6 @@ fun main(args: Array<String>) {
 class Randomizer {
     private val valueToIndex = mutableMapOf<Int, Int>()
     private val indexToValue = mutableMapOf<Int, Int>()
-    private var size = 0
 
     fun add(value: Int) {
         if (valueToIndex.containsKey(value)) return
