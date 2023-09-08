@@ -11,21 +11,25 @@ class ReverseVowelString {
 
         var left = 0
         var right = sb.length - 1
-        while (right >= 0) {
-            val ch = sb[right]
-            if (dictionary.contains(ch)) {
-                while (left < right) {
-                    val leftCh = sb[left]
-                    if (dictionary.contains(leftCh)) {
-                        sb[right] = leftCh
-                        sb[left] = ch
-                        left++
-                        break
-                    }
-                    left++
-                }
+        while (left < right) {
+            val leftCh = sb[left]
+            val rightCh = sb[right]
+
+            val isLeftVowel = dictionary.contains(leftCh)
+            val isRightVowel = dictionary.contains(rightCh)
+
+            if (isLeftVowel && isRightVowel) {
+                sb[right] = leftCh
+                sb[left] = rightCh
+                left++
+                right--
             }
-            right--
+            if (!isLeftVowel) {
+                left++
+            }
+            if (!isRightVowel) {
+                right--
+            }
         }
 
         return sb.toString()
