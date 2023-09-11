@@ -4,31 +4,21 @@ import org.junit.jupiter.api.Assertions.assertEquals
 
 class LuckyNumbersInMatrix {
     fun luckyNumbers(matrix: Array<IntArray>): List<Int> {
-        val minRows = IntArray(matrix.size)
+        val minRows = IntArray(matrix.size) { Int.MAX_VALUE }
+        val maxColumns = IntArray(matrix[0].size)
 
         for (i in matrix.indices) {
-            var min = Int.MAX_VALUE
             for (j in 0 until matrix[0].size) {
-                min = minOf(matrix[i][j], min)
+                minRows[i] = minOf(matrix[i][j], minRows[i])
+                maxColumns[j] = maxOf(matrix[i][j], maxColumns[j])
             }
-            minRows[i] = min
-        }
-
-        val maxColumns = IntArray(matrix[0].size)
-        for (i in 0 until matrix[0].size) {
-            var max = Int.MIN_VALUE
-            for (element in matrix) {
-                max = maxOf(element[i], max)
-            }
-            maxColumns[i] = max
         }
 
         val result = mutableListOf<Int>()
         for (i in matrix.indices) {
             for (j in 0 until matrix[0].size) {
-                val num = matrix[i][j]
-                if (num == minRows[i] && num == maxColumns[j]) {
-                    result.add(num)
+                if (minRows[i] == maxColumns[j]) {
+                    result.add(minRows[i])
                 }
             }
         }
