@@ -19,6 +19,8 @@ class MaximumNumberOfVowelsInSubstringGivenLength {
                 if (vowelDictionary.contains(s[i - k + 1])) vowelCount--
             }
             i++
+
+            if (max == k) return max
         }
 
         return max
