@@ -1,9 +1,18 @@
 package leetCode.medium
 
 import org.junit.jupiter.api.Assertions.assertEquals
+import kotlin.math.abs
+import kotlin.math.max
 
 class DetermineIfACellReachable {
+
     fun isReachableAtTime(sx: Int, sy: Int, fx: Int, fy: Int, t: Int): Boolean {
+        val distance = max(abs(sx - fx), abs(sy - fy))
+
+        return if (distance > 0) t >= distance else t != 1
+    }
+
+    fun isReachableAtTimeSimulation(sx: Int, sy: Int, fx: Int, fy: Int, t: Int): Boolean {
         var timePassed = 0
 
         var startPointX = sx
