@@ -21,14 +21,14 @@ class MinimumDifferenceBeHighestAndLowestScore {
 
 fun main(args: Array<String>) {
     val solution = MinimumDifferenceBeHighestAndLowestScore()
-//    val example1 = solution.minimumDifference(intArrayOf(90), 1)
-//    assertEquals(0, example1)
-//
-//    val example2 = solution.minimumDifference(intArrayOf(9, 4, 1, 7), 2)
-//    assertEquals(2, example2)
-//
-//    val example3 = solution.minimumDifference(intArrayOf(87063, 61094, 44530, 21297, 95857, 93551, 9918), 6)
-//    assertEquals(74560, example3)
+    val example1 = solution.minimumDifference(intArrayOf(90), 1)
+    assertEquals(0, example1)
+
+    val example2 = solution.minimumDifference(intArrayOf(9, 4, 1, 7), 2)
+    assertEquals(2, example2)
+
+    val example3 = solution.minimumDifference(intArrayOf(87063, 61094, 44530, 21297, 95857, 93551, 9918), 6)
+    assertEquals(74560, example3)
 
     val example4 = solution.minimumDifference(
         intArrayOf(
@@ -103,5 +103,5 @@ fun main(args: Array<String>) {
             20478
         ), 5
     )
-    assertEquals(6607, example4)
+    assertEquals(1428, example4)
 }
