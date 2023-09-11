@@ -6,24 +6,20 @@ class IncreasingTripletSubsequence {
     fun increasingTriplet(nums: IntArray): Boolean {
         if (nums.size < 3) return false
 
-
-
-        for (i in nums.indices) {
-            for (j in i + 1 until nums.size) {
-                if (nums[i] < nums[j]) {
-                    for (k in j + 1 until nums.size) {
-                        if (nums[i] < nums[j] && nums[j] < nums[k]) return true
-                    }
-                }
+        val minArray = IntArray(3) { Int.MAX_VALUE }
+        for (num in nums) {
+            if (num <= minArray[0]) {
+                minArray[0] = num
+            } else if (num <= minArray[1]) {
+                minArray[1] = num
+            } else {
+                return true
             }
         }
 
         return false
     }
 }
-
-//20,100,10,12,5,13
-//-80,90,-2,7,-8,13
 
 fun main(args: Array<String>) {
     val solution = IncreasingTripletSubsequence()
