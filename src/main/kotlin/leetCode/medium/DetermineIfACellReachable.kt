@@ -43,38 +43,63 @@ class DetermineIfACellReachable {
         var shift = 0
         while (timePassed < t) {
             if (startPointX < endPointX && startPointY < endPointY) {
-                startPointX++
-                startPointY++
-                diagonalMove++
-            } else if (startPointX < endPointX && startPointY > endPointY) {
-                startPointY--
-                startPointX++
-                diagonalMove++
-            } else if (startPointX < endPointX) {
-                startPointX++
-                shift++
-            } else if (startPointY < endPointY) {
-                startPointY++
-                shift++
-            } else if (startPointY > endPointY) {
-                startPointY--
-                shift++
-            } else if (t - timePassed >= 3) {
-                timePassed += 2 //спокойно вычитаем 3
-            } else if (t - timePassed >= 2) {
-                timePassed++ //влево, вправо
-            } else if (diagonalMove > 0) {
-                diagonalMove--
-            } else if (shift > 0) {
-                shift--
-            } else {
-                startPointX--
-            }
+                val min = minOf(endPointX - startPointX, endPointY - startPointY)
 
-            timePassed++
+                startPointX += min
+                startPointY += min
+                diagonalMove += min
+                timePassed += min
+                continue
+            } else if (startPointX < endPointX && startPointY > endPointY) {
+                val min = minOf(endPointX - startPointX, startPointY - endPointY)
+
+                startPointY -= min
+                startPointX += min
+                diagonalMove += min
+                timePassed += min
+                continue
+            } else if (startPointX < endPointX) {
+                val diff = endPointX - startPointX
+                startPointX += diff
+                shift += diff
+                timePassed += diff
+                continue
+            } else if (startPointY < endPointY) {
+                val diff = endPointY - startPointY
+
+                startPointY += diff
+                shift += diff
+                timePassed += diff
+                continue
+            } else if (startPointY > endPointY) {
+                val diff = startPointY - endPointY
+
+                startPointY -= diff
+                shift += diff
+                timePassed += diff
+                continue
+            } else if (t - timePassed >= 3) {
+                val devided = (t - timePassed) / 3
+                timePassed += 3 * devided //спокойно вычитаем 3
+                continue
+            } else if (t - timePassed >= 2) {
+                val devided = (t - timePassed) / 2
+                timePassed += 2 * devided //влево, вправо
+                continue
+            } else if (diagonalMove > 0) {
+                val diff = minOf(t - timePassed, diagonalMove)
+                timePassed += diff
+                diagonalMove -= diff
+                continue
+            } else if (shift > 0) {
+                val diff = minOf(t - timePassed, shift)
+                timePassed += diff
+                shift -= diff
+                continue
+            }
         }
 
-        if (startPointX == endPointX && startPointY == endPointY) {
+        if (startPointX == endPointX && startPointY == endPointY && timePassed == t) {
             return true
         }
 
@@ -113,5 +138,14 @@ fun main(args: Array<String>) {
 
     val example10 = solution.isReachableAtTime(2, 5, 2, 5, 7)
     assertEquals(true, example10)
+//
+    val example11 = solution.isReachableAtTime(
+        293596575,
+        940493727,
+        662279371,
+        855472538,
+        911145334
+    )
+    assertEquals(true, example11)
 }
 
