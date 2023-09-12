@@ -6,10 +6,8 @@ class MinimumDeletionsMakeCharacterFrequencies {
     fun minDeletions(s: String): Int {
         val charToFrequency = HashMap<Char, Int>()
 
-        var max = 0
         for (ch in s) {
             val newFrequency = charToFrequency.getOrDefault(ch, 0) + 1
-            max = maxOf(max, newFrequency)
             charToFrequency[ch] = newFrequency
         }
         val frequencyToChar = HashMap<Int, Char>()
