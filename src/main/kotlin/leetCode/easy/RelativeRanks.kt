@@ -7,7 +7,7 @@ class RelativeRanks {
     fun findRelativeRanks(score: IntArray): Array<String> {
         if (score.size == 1) return score.map { "Gold Medal" }.toTypedArray()
 
-        val heap = PriorityQueue(Collections.reverseOrder())
+        val heap = PriorityQueue<Int>(Collections.reverseOrder())
         for (item in score) {
             heap.add(item)
         }
