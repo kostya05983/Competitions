@@ -4,22 +4,14 @@ import org.junit.jupiter.api.Assertions.assertEquals
 
 class Candy {
     fun candy(ratings: IntArray): Int {
-        var i = 0
-
         val candies = IntArray(ratings.size) { 1 }
-        while (i < ratings.size - 1) {
-            val diff = if (ratings[i] < ratings[i + 1]) {
-                val newValue = candies[i] + 1
-                candies[i + 1] = newValue
-                newValue
-            } else 1
 
-            var j = i + 1
-            while (j != 0 && ratings[j - 1] > ratings[j] && candies[j - 1] <= candies[j]) {
-                candies[j - 1] += diff
-                j--
-            }
-            i++
+        for (i in 1 until candies.size) {
+            if (ratings[i] > ratings[i - 1]) candies[i] = candies[i - 1] + 1
+        }
+
+        for (i in candies.size - 2 downTo 0) {
+            if (ratings[i] > ratings[i + 1]) candies[i] = maxOf(candies[i], candies[i + 1] + 1)
         }
 
         return candies.sum()
