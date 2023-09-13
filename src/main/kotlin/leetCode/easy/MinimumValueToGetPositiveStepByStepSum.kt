@@ -1,19 +1,18 @@
 package leetCode.easy
 
 import org.junit.jupiter.api.Assertions.assertEquals
-import kotlin.math.abs
 
 class MinimumValueToGetPositiveStepByStepSum {
     fun minStartValue(nums: IntArray): Int {
         var min = 0
         var current = 0
 
-        for(num in nums) {
+        for (num in nums) {
             current += num
             min = minOf(min, current)
         }
 
-        return abs(min) + 1
+        return 1 - min
     }
 }
 
