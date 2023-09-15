@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Assertions.assertArrayEquals
 
 class SuccessfulPairsOfSpellsAndPotions {
     fun successfulPairs(spells: IntArray, potions: IntArray, success: Long): IntArray {
-        val tabulation = IntArray(spells.size)
         val result = IntArray(spells.size)
 
         val indexedSpell = spells.mapIndexed { index, i -> Pair(i, index) }
@@ -16,13 +15,13 @@ class SuccessfulPairsOfSpellsAndPotions {
         for (i in sortedSpells.indices) {
             var count = 0
             val spell = sortedSpells[i].first.toLong()
-            if (i != 0 && tabulation[i - 1] == maxSize) {
-                tabulation[i] = maxSize
-                result[sortedSpells[i].second] = tabulation[i]
+            if (i != 0 && right == maxSize) {
+                result[sortedSpells[i].second] = right
                 continue
             }
 
-            for (j in right until potions.size) {
+            var j = right
+            while (j < potions.size) {
                 val potion = potions[j]
                 val product = spell * potion
                 if (product >= success) {
@@ -31,10 +30,11 @@ class SuccessfulPairsOfSpellsAndPotions {
                     right = j
                     break
                 }
+                j++
             }
+            if (j == potions.size) right = j
 
-            tabulation[i] = tabulation.getOrElse(i - 1) { 0 } + count
-            result[sortedSpells[i].second] = minOf(maxSize, tabulation[i])
+            result[sortedSpells[i].second] = minOf(maxSize, right)
         }
 
         return result
