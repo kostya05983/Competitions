@@ -4,35 +4,18 @@ class HappyStudents {
     fun countWays(nums: List<Int>): Int {
         val sorted = nums.sorted()
 
-        val n = sorted.size
-
-        var sum = 0
         var i = 0
         var count = 0
-        var wasZero = false
 
-        val set = mutableSetOf<Int>()
-        for (num in nums) {
-            set.add(num)
-        }
+        if (sorted[0] != 0) count++
 
-        while (i < sorted.size - 1) {
-            if (sorted[i] < (i + 1) && sorted[i] < sorted[i + 1]) {
-                if (!set.contains(i + 1) && sorted[i + 1] > i + 1) {
-                    count++
-                }
+        while (i < sorted.size) {
+            val cnt = i + 1
+            if (sorted[i] < cnt && (cnt == sorted.size || cnt < sorted[i + 1])) {
+                count++
             }
-            if (sorted[i] == 0) wasZero = true
-
-            sum += sorted[i]
             i++
         }
-        if (sorted.last() < n) {
-            count++
-        }
-        if (nums.last() == 0) wasZero = true
-        if (!wasZero) count++
-
 
         return count
     }
