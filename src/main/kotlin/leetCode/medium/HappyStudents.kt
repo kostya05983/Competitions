@@ -25,10 +25,10 @@ fun main(args: Array<String>) {
     val solution = HappyStudents()
     val example1 = solution.countWays(listOf(1, 1))
     println(example1)
-////
+
     val example2 = solution.countWays(listOf(6, 0, 3, 3, 6, 7, 2, 7))
     println(example2)
-////
+
     val example3 = solution.countWays(listOf(0, 1, 1, 1))
     println(example3)
 
