@@ -4,19 +4,31 @@ import org.junit.jupiter.api.Assertions.assertEquals
 
 class FindTheDuplicateNumber {
     fun findDuplicate(nums: IntArray): Int {
-        var and = nums[0]
-        var or = nums[0]
-        var xor = nums[0]
-        for (i in 1 until nums.size) {
-            val value = nums[i]
-            and = and.and(value)
-            or = or.or(value)
-            xor = xor.xor(value)
+        var slow = 0
+        var fast = 0
+        do {
+            slow = nums[slow]
+            fast = nums[nums[fast]]
+        } while (slow != fast)
+
+        slow = 0
+
+        while (slow != fast) {
+            slow = nums[slow]
+            fast = nums[fast]
         }
-        println("and=${Integer.toBinaryString(and)} or=${Integer.toBinaryString(or)} xor=${Integer.toBinaryString(xor)}")
 
+        return slow
+    }
 
-        TODO("А дальше не придумали")
+    fun findDuplicateNaive(nums: IntArray): Int {
+        for (i in nums.indices) {
+            for (j in i + 1 until nums.size) {
+                if (nums[i] == nums[j]) return nums[i]
+            }
+        }
+
+        return -1
     }
 }
 
