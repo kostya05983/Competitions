@@ -36,11 +36,11 @@ class BeautifulTowers {
                 } else {
                     val leftNearestMinKey = binary.floorKey(leftArray[i])
 
-                    if (leftNearestMinKey == null) {
-                        current = leftArray[i].toLong() * (i + 1)
+                    current = if (leftNearestMinKey == null) {
+                        leftArray[i].toLong() * (i + 1)
                     } else {
                         val leftNearestMinIndex = binary[leftNearestMinKey]!!
-                        current = leftArray[i].toLong() * (i - leftNearestMinIndex) + leftMemory[leftNearestMinIndex]!!
+                        leftArray[i].toLong() * (i - leftNearestMinIndex) + leftMemory[leftNearestMinIndex]!!
                     }
 
                     leftMemory[i] = current
@@ -74,12 +74,11 @@ class BeautifulTowers {
                 } else {
                     val rightNearestMinKey = binary.floorKey(rightArray[i])
 
-                    if (rightNearestMinKey == null) {
-                        current = rightArray[i].toLong() * (rightArray.size - i)
+                    current = if (rightNearestMinKey == null) {
+                        rightArray[i].toLong() * (rightArray.size - i)
                     } else {
                         val rightNearestMinIndex = binary[rightNearestMinKey]!!
-                        current =
-                            rightArray[i].toLong() * (rightNearestMinIndex - i) + rightMemory[rightNearestMinIndex]!!
+                        rightArray[i].toLong() * (rightNearestMinIndex - i) + rightMemory[rightNearestMinIndex]!!
                     }
 
                     rightMemory[i] = current
