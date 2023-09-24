@@ -4,30 +4,26 @@ import org.junit.jupiter.api.Assertions.assertEquals
 
 class ChampagneTower {
     fun champagneTower(poured: Int, query_row: Int, query_glass: Int): Double {
-        val rows = mutableListOf<DoubleArray>()
+        val rows = mutableListOf(doubleArrayOf(poured.toDouble()))
 
-        for (i in 0..query_row) {
+        for (i in 1..query_row) {
             val row = DoubleArray(i + 1)
 
             for (j in row.indices) {
-                if (i == 0) {
-                    row[j] = poured.toDouble()
-                } else {
-                    when (j) {
-                        0 -> {
-                            row[j] = getPreviousChampagne(rows, i - 1, j)
-                        }
+                when (j) {
+                    0 -> {
+                        row[j] = getPreviousChampagne(rows, i - 1, j)
+                    }
 
-                        row.size - 1 -> {
-                            row[j] = getPreviousChampagne(rows, i - 1, j - 1)
-                        }
+                    row.size - 1 -> {
+                        row[j] = getPreviousChampagne(rows, i - 1, j - 1)
+                    }
 
-                        else -> {
-                            val leftCup = getPreviousChampagne(rows, i - 1, j - 1)
-                            val rightCup = getPreviousChampagne(rows, i - 1, j)
+                    else -> {
+                        val leftCup = getPreviousChampagne(rows, i - 1, j - 1)
+                        val rightCup = getPreviousChampagne(rows, i - 1, j)
 
-                            row[j] = leftCup + rightCup
-                        }
+                        row[j] = leftCup + rightCup
                     }
                 }
             }
