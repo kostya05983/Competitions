@@ -6,60 +6,17 @@ import kotlin.system.measureTimeMillis
 
 class SplitArrayIntoMaximumNumber {
     fun maxSubarrays(nums: IntArray): Int {
-        //идём дальше, набираем подмассив
-        //делим подмассив и идём дальше набирать новый
-        //стейт, мы знаем текущую сумму подмасива через and оператор
-        //стейт, мы знаем число подмассивов, т.к если разделили, то это +1
-        //стейт,
-        return handle(nums[0], 0, 1, 1, nums, mutableMapOf(), IntArray(1) { Int.MAX_VALUE }).second
-    }
-
-    private fun handle(
-        subArraySum: Int,
-        sum: Int,
-        subArrayCount: Int,
-        index: Int,
-        nums: IntArray,
-        memory: MutableMap<Pair<Int, Int>, Pair<Int, Int>>,
-        memory2: IntArray
-    ): Pair<Int, Int> {
-        if (index == nums.size) {
-            return sum + subArraySum to subArrayCount //завершаем массив
-        }
-
-        if (memory2[0] < (sum + subArraySum)) return Pair(Int.MAX_VALUE, Int.MIN_VALUE)
-
-        val moveNext = handle(subArraySum.and(nums[index]), sum, subArrayCount, index + 1, nums, memory, memory2)
-
-        val memorized = memory[Pair(subArrayCount, index)]
-        val devideNext = if (memorized != null) {
-            memorized
-        } else {
-            val result = handle(nums[index], sum + subArraySum, subArrayCount + 1, index + 1, nums, memory, memory2)
-//            memory[Pair(subArrayCount, index)] = result
-            result
-        }
-
-        return when {
-            moveNext.first < devideNext.first -> {
-                memory2[0] = minOf(moveNext.first, memory2[0])
-                return moveNext
-            }
-
-            moveNext.first > devideNext.first -> {
-                memory2[0] = minOf(devideNext.first, memory2[0])
-                return devideNext
-            }
-
-            else -> {
-                memory2[0] = minOf(moveNext.first, memory2[0])
-                if (moveNext.second >= devideNext.second) {
-                    return moveNext
-                } else {
-                    devideNext
-                }
+        var count = 0
+        var current = Int.MAX_VALUE
+        for (num in nums) {
+            current = current.and(num)
+            if (current == 0) {
+                count++
+                current = Int.MAX_VALUE
             }
         }
+
+        return maxOf(1, count)
     }
 }
 
