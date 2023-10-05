@@ -22,7 +22,15 @@ class CountNicePairsInArray {
     }
 
     private fun revertNum(it: Int): Int {
-        return it.toString().reversed().toInt()
+        var current = it
+
+        var result = 0
+        while (current > 0) {
+            result = result * 10 + current.rem(10)
+            current /= 10
+        }
+
+        return result
     }
 }
 
