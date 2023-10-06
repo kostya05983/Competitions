@@ -4,15 +4,14 @@ class CountNicePairsInArray {
     fun countNicePairs(nums: IntArray): Int {
         var count = 0L
 
-        val transformed = nums.asSequence().map {
-            it - revertNum(it)
+        for (i in nums.indices) {
+            nums[i] = nums[i] - revertNum(nums[i])
         }
 
-        val frequencies = mutableMapOf<Int, Int>()
-
-        for (transform in transformed) {
-            val newValue = frequencies.getOrDefault(transform, 0) + 1
-            frequencies[transform] = newValue
+        val frequencies = HashMap<Int, Int>()
+        for (num in nums) {
+            val newValue = frequencies.getOrDefault(num, 0) + 1
+            frequencies[num] = newValue
             if (newValue > 1) {
                 count += newValue - 1
             }
