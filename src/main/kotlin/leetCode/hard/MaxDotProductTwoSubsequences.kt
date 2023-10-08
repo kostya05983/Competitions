@@ -18,7 +18,6 @@ class MaxDotProductTwoSubsequences {
 
         val dp = Array(nums1.size) { IntArray(nums2.size) }
 
-
         return dfs(0, 0, nums1, nums2, dp)
     }
 
