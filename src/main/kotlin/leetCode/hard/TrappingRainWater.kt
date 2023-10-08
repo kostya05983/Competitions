@@ -1,6 +1,6 @@
 package leetCode.hard
 
-import java.util.Collections
+import org.junit.jupiter.api.Assertions.assertEquals
 import java.util.PriorityQueue
 
 class TrappingRainWater {
@@ -9,12 +9,18 @@ class TrappingRainWater {
         val second: Int
     ) : Comparable<Pair> {
         override fun compareTo(other: Pair): Int {
-            return first.compareTo(other.first)
+            return if (first == other.first) {
+                other.second.compareTo(second)
+            } else {
+                first.compareTo(other.first)
+            }
         }
     }
 
     fun trap(height: IntArray): Int {
         var left = height.indexOfFirst { it != 0 }
+        if (left == -1) return 0
+
         var right = left + 1
 
         var result = 0
@@ -26,6 +32,8 @@ class TrappingRainWater {
         }
         val countBlocks = IntArray(height.size)
         countBlocks[left] = height[left]
+
+        val memory = mutableMapOf<Int, Int>()
 
         while (right < height.size) {
             val leftHeight = height[left]
@@ -50,7 +58,11 @@ class TrappingRainWater {
 
             //Выкидываем, все элементы, которые меньше правой стены до последнего
             while (minHeap.size >= 1 && minHeap.peek().first < rightHeight) {
-                minHeap.poll()
+                val polled = minHeap.poll()
+                val found = memory[polled.second]
+                if (found != null) {
+                    localResult -= found
+                }
             }
 
             val leftWall = minHeap.peek()
@@ -60,11 +72,11 @@ class TrappingRainWater {
                 continue
             }
 
-            localResult += (right - leftWall.second - 1) * rightHeight - (countBlocks[right - 1] - countBlocks[leftWall.second])
-            //todo сейчас не работает кейс, когда встретили больше правого, чем преведущий правый, не сбрасывается localResult, где его надо сбрасывать?
-            while (minHeap.peek()?.first == rightHeight) {
-                minHeap.poll()
-            }
+            val waterSize = (right - leftWall.second - 1) * rightHeight -
+                    (countBlocks[right - 1] - countBlocks[leftWall.second])
+            memory[right] = waterSize
+            localResult += waterSize
+
             minHeap.add(Pair(rightHeight, right))
             right++
         }
@@ -76,7 +88,9 @@ class TrappingRainWater {
 
 fun main(args: Array<String>) {
     val solution = TrappingRainWater()
-//    println(solution.trap(intArrayOf(0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1)))
-//    println(solution.trap(intArrayOf(4, 2, 0, 3, 2, 5)))
-    println(solution.trap(intArrayOf(12, 0, 10, 11, 0, 10)))
+    assertEquals(6, solution.trap(intArrayOf(0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1)))
+    assertEquals(9, solution.trap(intArrayOf(4, 2, 0, 3, 2, 5)))
+    assertEquals(22, solution.trap(intArrayOf(12, 0, 10, 11, 0, 10)))
+    assertEquals(3, solution.trap(intArrayOf(9, 6, 8, 8, 5, 6, 3)))
+    assertEquals(33, solution.trap(intArrayOf(4, 3, 8, 3, 1, 5, 9, 9, 0, 4, 3, 4, 7)))
 }
