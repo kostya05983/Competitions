@@ -1,24 +1,22 @@
 package leetCode.hard
 
-import java.math.BigInteger
-
 class ConstructProductMatrix {
     fun constructProductMatrix(grid: Array<IntArray>): Array<IntArray> {
-        var commonProduct = BigInteger("1")
+        val resultGrid = Array(grid.size) { IntArray(grid[0].size) }
 
-        for (element in grid) {
-            for (j in grid[0].indices) {
-                commonProduct = commonProduct.multiply(BigInteger.valueOf(element[j].toLong()))
+        var prefixProduct = 1L
+        for (i in grid.indices) {
+            for (j in 0 until grid[0].size) {
+                resultGrid[i][j] = prefixProduct.rem(12345).toInt()
+                prefixProduct = (prefixProduct * grid[i][j]).rem(12345)
             }
         }
 
-        val resultGrid = Array(grid.size) { IntArray(grid[0].size) }
-
-        for (i in grid.indices) {
-            for (j in grid[0].indices) {
-                resultGrid[i][j] =
-                    (commonProduct.divide(BigInteger.valueOf(grid[i][j].toLong()))).mod(BigInteger.valueOf(12345L))
-                        .toInt()
+        var suffixProduct = 1L
+        for (i in grid.size - 1 downTo 0) {
+            for (j in grid[0].size - 1 downTo 0) {
+                resultGrid[i][j] = (resultGrid[i][j] * suffixProduct).rem(12345).toInt()
+                suffixProduct = (suffixProduct * grid[i][j]).rem(12345)
             }
         }
 
