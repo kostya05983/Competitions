@@ -1,9 +1,5 @@
-package yandex.interview
+package interview
 
-import interview.CashMachine
-import interview.GetCashMachineResult
-import interview.Money
-import interview.MoneyType
 import org.junit.jupiter.api.Test
 
 internal class CashMachineTest {
