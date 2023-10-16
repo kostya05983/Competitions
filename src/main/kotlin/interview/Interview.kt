@@ -1,4 +1,4 @@
-package yandex.interview
+package interview
 
 //https://interview.yandex-team.ru/room/rcqt5xc3kb
 

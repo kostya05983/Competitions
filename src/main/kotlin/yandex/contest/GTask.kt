@@ -1,4 +1,4 @@
-package yandex
+package yandex.contest
 
 import kotlin.math.abs
 

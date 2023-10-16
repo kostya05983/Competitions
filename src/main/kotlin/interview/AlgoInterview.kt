@@ -1,7 +1,4 @@
-package yandex.interview
-
-import leetCode.medium.Node
-import java.lang.StringBuilder
+package interview
 
 fun printBeautify(nums: IntArray): String {
     nums.sort()

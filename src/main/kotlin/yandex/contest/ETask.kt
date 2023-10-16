@@ -1,4 +1,4 @@
-package yandex
+package yandex.contest
 
 fun main(args: Array<String>) {
     val a = readLine()!!

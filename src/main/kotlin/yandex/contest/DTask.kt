@@ -1,6 +1,4 @@
-package yandex
-
-import java.util.*
+package yandex.contest
 
 fun recursion(remainsLeft: Int, remainsRight: Int, current: String, sb: StringBuilder) {
     if (remainsRight <= 0 && remainsLeft <= 0) {

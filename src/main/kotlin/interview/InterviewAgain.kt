@@ -1,4 +1,4 @@
-package yandex.interview
+package interview
 
 import java.util.Stack
 import kotlin.random.Random
