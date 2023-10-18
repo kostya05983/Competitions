@@ -12,7 +12,7 @@ class AverageValueOfEventNumbersDivisibleByThree {
             }
         }
 
-        return if (count == 0) 0 else (sum.toDouble() / count).toInt()
+        return if (count == 0) 0 else sum / count
     }
 }
 
