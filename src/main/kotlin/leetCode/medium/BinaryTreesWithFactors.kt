@@ -13,7 +13,6 @@ class BinaryTreesWithFactors {
             for (j in 0 until i) {
                 val numJ = arr[j]
 
-
                 if (numI.rem(numJ) != 0) continue
 
                 val key = (numI / numJ)
