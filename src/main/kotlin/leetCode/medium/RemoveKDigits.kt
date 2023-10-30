@@ -26,16 +26,7 @@ class RemoveKDigits {
 
         if (monotonicStack.all { it == 0 }) return "0"
 
-        val sb = StringBuilder()
-        var wasNumber = false
-        for (item in monotonicStack) {
-            if (item > 0) wasNumber = true
-            if (item == 0 && !wasNumber) continue
-
-            sb.append(item)
-        }
-
-        return sb.toString()
+        return monotonicStack.joinToString("").dropWhile { it == '0' }
     }
 }
 
