@@ -1,14 +1,6 @@
 package educative.crack.java.interview.linkedlist;
 
 public class DeletionInSinglyLinkedList<T> {
-    public class Node {
-        public T data;
-        public Node nextNode;
-
-        public Node() {
-        }
-    }
-
     public int size;
 
     public Node headNode;

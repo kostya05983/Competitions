@@ -1,19 +1,20 @@
 package educative.crack.java.interview.linkedlist;
 
-public class SearchNode<T> {
+public class LengthOfLinkedList<T> {
+
     public Node headNode;
 
-    public boolean searchNode(T data) {
-        if (headNode == null) return false;
+    public int length() {
+        int count = 0;
 
         Node current = headNode;
 
         while (current != null) {
-            if (current.data.equals(data)) return true;
+            count++;
             current = current.nextNode;
         }
 
         // Write -- Your -- Code
-        return false; //value not found
+        return count;
     }
 }

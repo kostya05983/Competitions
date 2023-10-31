@@ -2,14 +2,6 @@ package educative.crack.java.interview.linkedlist;
 
 
 public class InsertAtEnd<T> {
-    public class Node {
-        public T data;
-        public Node nextNode;
-
-        public Node() {
-        }
-    }
-
     public Node headNode;
 
     public void insertAtEnd(T data) {
