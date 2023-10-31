@@ -1,4 +1,4 @@
-package educative;
+package educative.crack.java.interview.arrays;
 
 public class FindSecondMaximumValue {
     public int findSecondMaximum(int[] arr) {

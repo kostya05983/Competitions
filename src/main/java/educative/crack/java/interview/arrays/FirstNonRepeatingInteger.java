@@ -1,4 +1,4 @@
-package educative;
+package educative.crack.java.interview.arrays;
 
 public class FirstNonRepeatingInteger {
     public static int findFirstUnique(int[] arr) {

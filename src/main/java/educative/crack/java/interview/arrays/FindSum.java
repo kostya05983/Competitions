@@ -1,4 +1,4 @@
-package educative;
+package educative.crack.java.interview.arrays;
 
 import java.util.ArrayList;
 import java.util.Arrays;

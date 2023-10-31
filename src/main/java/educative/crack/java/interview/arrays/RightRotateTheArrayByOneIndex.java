@@ -1,4 +1,4 @@
-package educative;
+package educative.crack.java.interview.arrays;
 
 public class RightRotateTheArrayByOneIndex {
     public static void rotateArray(int[] arr) {

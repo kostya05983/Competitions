@@ -1,4 +1,4 @@
-package educative;
+package educative.crack.java.interview.arrays;
 
 public class FindSumOfMaximumSubArray {
     public static int findMaxSumSubArray(int[] arr) {

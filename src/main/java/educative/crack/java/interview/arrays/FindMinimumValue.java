@@ -1,4 +1,4 @@
-package educative;
+package educative.crack.java.interview.arrays;
 
 public class FindMinimumValue {
     public static int findMinimum(int[] arr) {

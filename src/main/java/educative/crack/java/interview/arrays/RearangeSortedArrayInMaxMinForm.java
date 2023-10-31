@@ -1,4 +1,4 @@
-package educative;
+package educative.crack.java.interview.arrays;
 
 public class RearangeSortedArrayInMaxMinForm {
     public static void maxMin(int[] arr) {

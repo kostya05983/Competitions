@@ -1,4 +1,4 @@
-package educative;
+package educative.crack.java.interview.arrays;
 
 public class ArrayOfProductExceptItself {
     public static int[] findProduct(int arr[]) {

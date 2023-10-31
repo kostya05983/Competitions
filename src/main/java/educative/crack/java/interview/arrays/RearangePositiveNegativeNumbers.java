@@ -1,4 +1,4 @@
-package educative;
+package educative.crack.java.interview.arrays;
 
 public class RearangePositiveNegativeNumbers {
     public static void reArrange(int[] arr) {
