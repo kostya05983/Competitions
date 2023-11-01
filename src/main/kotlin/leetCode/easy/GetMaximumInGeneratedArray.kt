@@ -28,8 +28,8 @@ class GetMaximumInGeneratedArray {
 
 fun main(args: Array<String>) {
     val solution = GetMaximumInGeneratedArray()
-//    println(solution.getMaximumGenerated(7))
-//    println(solution.getMaximumGenerated(2))
-//    println(solution.getMaximumGenerated(3))
+    println(solution.getMaximumGenerated(7))
+    println(solution.getMaximumGenerated(2))
+    println(solution.getMaximumGenerated(3))
     println(solution.getMaximumGenerated(100))
 }
