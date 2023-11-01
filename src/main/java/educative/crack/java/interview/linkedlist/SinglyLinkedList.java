@@ -1,6 +1,9 @@
 package educative.crack.java.interview.linkedlist;
 
+import java.util.HashSet;
+
 public class SinglyLinkedList<T> {
+    //Node inner class for SLL
     public class Node {
         public T data;
         public Node nextNode;
@@ -8,11 +11,29 @@ public class SinglyLinkedList<T> {
     }
 
     //head node of the linked list
-    public Node headNode;
+    private Node headNode;
+    private int size;
+
+    public Node getHeadNode() {
+        return headNode;
+    }
+
+    public void setHeadNode(Node headNode) {
+        this.headNode = headNode;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
 
     //constructor
     public SinglyLinkedList() {
         headNode = null;
+        size = 0;
     }
 
     public boolean isEmpty() {
@@ -29,6 +50,7 @@ public class SinglyLinkedList<T> {
         //Linking head to the newNode's nextNode
         newNode.nextNode = headNode;
         headNode = newNode;
+        size++;
     }
 
     //Inserts new data at the end of the linked list
@@ -50,6 +72,7 @@ public class SinglyLinkedList<T> {
         }
         //make newNode the next element of the last node
         last.nextNode = newNode;
+        size++;
     }
 
     //inserts data after the given prev data node
@@ -69,6 +92,7 @@ public class SinglyLinkedList<T> {
         if (currentNode != null) {
             newNode.nextNode = currentNode.nextNode;
             currentNode.nextNode = newNode;
+            size++;
         }
     }
 
@@ -108,6 +132,7 @@ public class SinglyLinkedList<T> {
         if (isEmpty())
             return;
         headNode = headNode.nextNode;
+        size--;
     }
 
     public void deleteAtEnd() {
@@ -120,13 +145,13 @@ public class SinglyLinkedList<T> {
             currentNode = currentNode.nextNode;
         }
         prevNode.nextNode = null;
+        size--;
     }
 
     public void deleteByValue(T data) {
         //if empty then simply return
         if (isEmpty())
             return;
-
         //Start from head node
         Node currentNode = this.headNode;
         Node prevNode = null; //previous node starts from null
@@ -141,11 +166,34 @@ public class SinglyLinkedList<T> {
             //node to delete is found
             if (data.equals(currentNode.data)) {
                 prevNode.nextNode = currentNode.nextNode;
+                size--;
                 return;
             }
             prevNode = currentNode;
             currentNode = currentNode.nextNode;
         }
     }
-}
+    public void removeDuplicatesWithHashing() {
+        Node current = this.headNode;
+        Node prevNode = this.headNode;
+        //will store all the elements that we observe once
+        HashSet<T> visitedNodes = new HashSet<T>();
 
+        if (!isEmpty() && current.nextNode != null) {
+            while (current != null) {
+                //check if already visited then delete this node
+                if (visitedNodes.contains(current.data)) {
+                    //deleting the node by undating the pointer of previous node
+                    prevNode.nextNode = current.nextNode;
+                    current = current.nextNode;
+                } else {
+                    //if node was not already visited then add it to the visited set
+                    visitedNodes.add(current.data);
+                    //moving on to next element in the list
+                    prevNode = current;
+                    current = current.nextNode;
+                }
+            }
+        }
+    }
+}
