@@ -7,18 +7,13 @@ class BuildAnArrayWithStackOperations {
         val result = Stack<String>()
 
         var targetPointer = 0
-        var misses = 0
         for (i in 1..n) {
             if (target[targetPointer] == i) {
-                while (misses > 0) {
-                    result.add("Pop")
-                    misses--
-                }
                 result.add("Push")
                 targetPointer++
             } else {
                 result.add("Push")
-                misses++
+                result.add("Pop")
             }
             if (targetPointer == target.size) break
         }
