@@ -4,7 +4,7 @@ import java.util.HashSet;
 
 public class RemoveDuplicates {
     public static <T> void removeDuplicates(SinglyLinkedList<T> list) {
-        SinglyLinkedList.Node current = list.headNode;
+        SinglyLinkedList.Node current = list.getHeadNode();
         SinglyLinkedList.Node previous = null;
 
         HashSet<Object> set = new HashSet<>();

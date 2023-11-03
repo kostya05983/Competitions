@@ -3,7 +3,7 @@ package educative.crack.java.interview.linkedlist;
 public class MiddleNodeLinkedList {
 
     public static <T> Object findMiddle(SinglyLinkedList<T> list) {
-        SinglyLinkedList.Node current = list.headNode;
+        SinglyLinkedList.Node current = list.getHeadNode();
 
         int count = 0;
         while (current != null) {
@@ -17,7 +17,7 @@ public class MiddleNodeLinkedList {
         }
 
         int index = 0;
-        current = list.headNode;
+        current = list.getHeadNode();
         while (current != null) {
             if (midIndex == index) {
                 return current.data;
