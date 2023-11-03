@@ -5,28 +5,43 @@ class MaximumNumberOfOccurrencesOfSubstring {
         val frequency = IntArray(26)
         var frequencyCount = 0
 
+        val occurences = mutableMapOf<String, Int>()
+
         var left = 0
-        var right = minSize
+        var right = 0
 
         var rightMax = maxSize
         var leftMax = minSize
 
-        while (right < s.length) {
-            //todo вычисления частотности
+        while (right < s.length || left < s.length) {
+            if (right < s.length) {
+                val increased = ++frequency[s[right] - 'a']
+                if (increased == 1) frequencyCount++
+            }
 
-            TODO()
-            if (right < rightMax) {
+            val size = right - left + 1
+            if (frequencyCount <= maxLetters && size >= minSize && size <= maxSize) {
+                val subString = s.substring(left, right)
+                occurences[subString] = occurences.getOrDefault(subString, 0) + 1
+            }
+
+            if (right < rightMax && right < s.length) {
                 right++
                 continue
             }
             if (left < leftMax) {
+                val decreased = --frequency[s[left] - 'a']
+                if (decreased == 0) frequencyCount--
+
                 left++
                 continue
             }
-            rightMax = rightMax + (maxSize - minSize)
-            leftMax = leftMax + (maxSize - minSize)
+            rightMax += minSize
+            leftMax += minSize
         }
-        TODO()
+
+
+        return occurences.maxBy { it.value }.value
     }
 }
 
