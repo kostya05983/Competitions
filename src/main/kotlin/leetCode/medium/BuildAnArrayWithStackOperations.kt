@@ -8,11 +8,10 @@ class BuildAnArrayWithStackOperations {
 
         var targetPointer = 0
         for (i in 1..n) {
+            result.add("Push")
             if (target[targetPointer] == i) {
-                result.add("Push")
                 targetPointer++
             } else {
-                result.add("Push")
                 result.add("Pop")
             }
             if (targetPointer == target.size) break
