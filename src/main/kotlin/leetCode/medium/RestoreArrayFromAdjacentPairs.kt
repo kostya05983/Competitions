@@ -2,7 +2,7 @@ package leetCode.medium
 
 class RestoreArrayFromAdjacentPairs {
     fun restoreArray(adjacentPairs: Array<IntArray>): IntArray {
-        val graph = mutableMapOf<Int, MutableList<Int>>()
+        val graph = HashMap<Int, MutableList<Int>>()
 
         for (pair in adjacentPairs) {
             val fromTo = graph.getOrDefault(pair[0], mutableListOf())
@@ -14,9 +14,9 @@ class RestoreArrayFromAdjacentPairs {
             graph[pair[1]] = toFrom
         }
 
-        val root = graph.filterKeys {
+        val root = graph.keys.first {
             graph[it]!!.size == 1
-        }.keys.first()
+        }
 
 
         val result = IntArray(graph.size)
