@@ -20,7 +20,7 @@ class MinimizeMaximumPairSumArray {
 
 fun main(args: Array<String>) {
     val solution = MinimizeMaximumPairSumArray()
-//    println(solution.minPairSum(intArrayOf(3, 5, 2, 3)))
-//    println(solution.minPairSum(intArrayOf(3, 5, 4, 2, 4, 6)))
+    println(solution.minPairSum(intArrayOf(3, 5, 2, 3)))
+    println(solution.minPairSum(intArrayOf(3, 5, 4, 2, 4, 6)))
     println(solution.minPairSum(intArrayOf(4, 1, 5, 1, 2, 5, 1, 5, 5, 4)))
 }
