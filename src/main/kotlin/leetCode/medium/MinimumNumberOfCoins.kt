@@ -10,12 +10,14 @@ class MinimumNumberOfCoins {
     private fun buyNext(i: Int, prices: IntArray, dp: IntArray): Int {
         if (i >= prices.size) return 0
         if (dp[i] != 0) return dp[i]
-        var res = Int.MAX_VALUE
+
+        var min = Int.MAX_VALUE
         for (j in i + 1..2 * i + 2) {
-            res = minOf(res, buyNext(j, prices, dp))
+            val nextPrice = buyNext(j, prices, dp)
+            min = minOf(min, nextPrice)
         }
 
-        dp[i] = res + prices[i]
+        dp[i] = min + prices[i]
 
         return dp[i]
     }
