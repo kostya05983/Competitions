@@ -2,19 +2,25 @@ package leetCode.easy
 
 class FindMissingAndRepeatingValue {
 
-    fun find(grid: Array<IntArray>): IntArray {
-        val booleanArray = BooleanArray(grid.size*grid.size)
+    fun findMissingAndRepeatedValues(grid: Array<IntArray>): IntArray {
+        val booleanArray = BooleanArray(grid.size * grid.size)
 
-        for(row in grid) {
-            for(col in row) {
-                booleanArray[col-1] = !booleanArray[col]
+        var a = 0
+        for (row in grid) {
+            for (col in row) {
+                if (booleanArray[col - 1]) {
+                    a = col
+                    continue
+                }
+
+                booleanArray[col - 1] = !booleanArray[col - 1]
             }
         }
 
         val result = mutableListOf<Int>()
-        for(i in 0 until booleanArray.size) {
-            val b = booleanArray[i]
-            if (!b) result.add(i+1)
+        for (i in booleanArray.indices) {
+            val value = booleanArray[i]
+            if (!value) return intArrayOf(a, i + 1)
         }
 
         return result.toIntArray()
@@ -24,5 +30,5 @@ class FindMissingAndRepeatingValue {
 fun main(args: Array<String>) {
     val solution = FindMissingAndRepeatingValue()
 
-    println(solution.find(arrayOf(intArrayOf(1,3), intArrayOf(2,2))).map { it })
+    println(solution.findMissingAndRepeatedValues(arrayOf(intArrayOf(1, 3), intArrayOf(2, 2))).map { it })
 }
