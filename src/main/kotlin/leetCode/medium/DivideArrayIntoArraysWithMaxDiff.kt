@@ -1,7 +1,7 @@
 package leetCode.medium
 
 class DivideArrayIntoArraysWithMaxDiff {
-    fun divide(nums: IntArray, k: Int): Array<IntArray> {
+    fun divideArray(nums: IntArray, k: Int): Array<IntArray> {
         nums.sort()
 
         val result = Array(nums.size / 3) { IntArray(3) }
@@ -23,8 +23,8 @@ class DivideArrayIntoArraysWithMaxDiff {
 
 fun main(args: Array<String>) {
     val solution = DivideArrayIntoArraysWithMaxDiff()
-    println(solution.divide(intArrayOf(1,3,4,8,7,9,3,5,1),2).map {
+    println(solution.divideArray(intArrayOf(1,3,4,8,7,9,3,5,1),2).map {
         it.toList()
     })
-    println(solution.divide(intArrayOf(1,3,3,2,7,3),3).map { it.toList() })
+    println(solution.divideArray(intArrayOf(1,3,3,2,7,3),3).map { it.toList() })
 }
