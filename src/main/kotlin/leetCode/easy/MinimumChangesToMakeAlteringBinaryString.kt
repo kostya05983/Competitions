@@ -5,7 +5,7 @@ class MinimumChangesToMakeAlteringBinaryString {
         var nextStartFirst = '0'
 
         var countFirst = if (s[0] == '1') 1 else 0
-        var countSecond = if (s[0] == '0') 1 else 0
+        var countZero = if (s[0] == '0') 1 else 0
 
         for (i in 1 until s.length) {
             val ch = s[i]
@@ -13,12 +13,12 @@ class MinimumChangesToMakeAlteringBinaryString {
             if (ch == nextStartFirst) {
                 countFirst++
             } else {
-                countSecond++
+                countZero++
             }
             nextStartFirst = reverse(nextStartFirst)
         }
 
-        return minOf(countFirst, countSecond)
+        return minOf(countFirst, countZero)
     }
 
     private fun reverse(ch: Char): Char {
