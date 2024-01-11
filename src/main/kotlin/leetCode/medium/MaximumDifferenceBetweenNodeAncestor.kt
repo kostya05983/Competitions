@@ -10,7 +10,7 @@ class MaximumDifferenceBetweenNodeAncestor {
     }
 
     private fun maxAncestorDiff(root: TreeNode?, max: Int, min: Int): Int {
-        if (root == null) return 0
+        if (root == null) return max - min
 
         val newMax = maxOf(max, root.`val`)
         val newMin = minOf(min, root.`val`)
@@ -18,10 +18,6 @@ class MaximumDifferenceBetweenNodeAncestor {
         val left = maxAncestorDiff(root.left, newMax, newMin)
         val right = maxAncestorDiff(root.right, newMax, newMin)
 
-        val diffMaxMin = abs(max - min)
-        val diffWithMax = abs(root.`val` - max)
-        val diffWithMin = abs(root.`val` - min)
-
-        return maxOf(maxOf(diffMaxMin, diffWithMax, diffWithMin), left, right)
+        return maxOf(left, right)
     }
 }
