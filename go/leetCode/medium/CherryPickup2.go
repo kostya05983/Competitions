@@ -25,7 +25,7 @@ func cherryPickup(grid [][]int) int {
 					maxRes := 0
 					for newJ := j - 1; newJ <= j+1; newJ++ {
 						for newK := k - 1; newK <= k+1; newK++ {
-							if newJ >= 0 && newJ < n && newK >= 0 && newK<n {
+							if newJ >= 0 && newJ < n && newK >= 0 && newK < n {
 								maxRes = max(maxRes, dp[i+1][newJ][newK])
 							}
 						}
