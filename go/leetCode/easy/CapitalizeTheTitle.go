@@ -2,25 +2,19 @@ package easy
 
 import (
 	"strings"
-	"unicode"
 )
 
 func capitalizeTitle(title string) string {
 	var words = strings.Split(title, " ")
-
-	var sb = strings.Builder{}
+	result := make([]string, len(words))
 
 	for i, word := range words {
 		if len(word) > 2 {
-			sb.WriteRune(unicode.ToUpper(rune(word[0])))
-			sb.WriteString(strings.ToLower(word[1:]))
+			result[i] = strings.Title(strings.ToLower(word))
 		} else {
-			sb.WriteString(strings.ToLower(word))
-		}
-		if i != len(words)-1 {
-			sb.WriteRune(' ')
+			result[i] = strings.ToLower(word)
 		}
 	}
 
-	return sb.String()
+	return strings.Join(result, " ")
 }
