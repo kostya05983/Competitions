@@ -23,23 +23,13 @@ func findLeastNumOfUniqueInts(arr []int, k int) int {
 		return frequenciesList[i].second < frequenciesList[j].second
 	})
 
-	index := 0
-	n := len(frequenciesList)
-	for k > 0 && index < n {
-		frequency := frequenciesList[index]
-		frequenciesList[index].second = frequency.second - 1
-		if frequency.second == 1 {
-			index++
-		}
-		k--
-	}
+	for i, _ := range frequenciesList {
+		k -= frequenciesList[i].second
 
-	result := 0
-	for _, num := range frequenciesList {
-		if num.second > 0 {
-			result++
+		if k < 0 {
+			return len(frequenciesList) - i
 		}
 	}
 
-	return result
+	return 0
 }
