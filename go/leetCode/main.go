@@ -6,5 +6,5 @@ import (
 )
 
 func main() {
-	fmt.Println(medium.LargestPerimeter([]int{1, 12, 1, 2, 5, 50, 3}))
+	fmt.Println(medium.FurthestBuilding([]int{14, 3, 19, 3}, 17, 0))
 }
