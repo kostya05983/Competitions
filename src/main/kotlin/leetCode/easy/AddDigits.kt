@@ -1,5 +1,10 @@
 package leetCode.easy
 
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+
 class AddDigits {
     fun addDigits(num: Int): Int {
         var currentNumber = num
@@ -22,6 +27,15 @@ class AddDigits {
 }
 
 fun main(args: Array<String>) {
-    println(AddDigits().addDigits(38))
-    println(AddDigits().addDigits(0))
+    runBlocking {
+        coroutineScope {
+            for (i in 0 until 10) {
+                GlobalScope.launch {
+                    println(i)
+                }
+            }
+        }
+    }
+//    println(AddDigits().addDigits(38))
+//    println(AddDigits().addDigits(0))
 }
