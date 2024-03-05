@@ -6,23 +6,20 @@ func minimumLength(s string) int {
 	right := n - 1
 
 	for left < right {
-		if s[left] != s[right] {
-			return right - left + 1
+		leftCh := s[left]
+		rightCh := s[right]
+
+		if leftCh != rightCh {
+			break
 		}
 
-		for left < n-1 && s[left] == s[left+1] {
+		for left <= right && s[left] == rightCh {
 			left++
 		}
-		for right > 0 && s[right] == s[right-1] {
+		for right >= left && s[right] == leftCh {
 			right--
 		}
-		left++
-		right--
 	}
 
-	if left == right {
-		return 1
-	}
-
-	return 0
+	return right - left + 1
 }
