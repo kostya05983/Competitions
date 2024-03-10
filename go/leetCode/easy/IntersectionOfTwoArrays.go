@@ -4,21 +4,18 @@ func intersection(nums1 []int, nums2 []int) []int {
 	set := make(map[int]bool, 0)
 
 	for _, num := range nums1 {
-		set[num] = true
-	}
-
-	intersectedNums := make(map[int]bool, 0)
-
-	for _, num := range nums2 {
-		if set[num] {
-			intersectedNums[num] = true
-		}
+		set[num] = false
 	}
 
 	result := make([]int, 0)
 
-	for key, _ := range intersectedNums {
-		result = append(result, key)
+	for _, num := range nums2 {
+		used, exists := set[num]
+
+		if exists && !used {
+			result = append(result, num)
+			set[num] = true
+		}
 	}
 
 	return result
