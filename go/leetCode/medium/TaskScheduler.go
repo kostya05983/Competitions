@@ -1,6 +1,8 @@
 package medium
 
-import "container/heap"
+import (
+	"sort"
+)
 
 type MaxHeap []int
 
@@ -23,47 +25,20 @@ func (h *MaxHeap) Pop() any {
 }
 
 func leastInterval(tasks []byte, n int) int {
-	frequency := make(map[byte]int, 0)
+	frequency := make([]int, 26)
 
 	for _, task := range tasks {
-		frequency[task]++
+		frequency[task-'A']++
 	}
+	sort.Ints(frequency)
 
-	maxHeap := &MaxHeap{}
+	maxFrequency := frequency[25]
+	idleCount := (maxFrequency - 1) * n
 
-	for _, value := range frequency {
-		if value > 0 {
-			maxHeap.Push(value)
-		}
+	for i := 24; i >= 0 && frequency[i] > 0; i-- {
+		idleCount -= min(maxFrequency-1, frequency[i])
 	}
-	heap.Init(maxHeap)
+	idleCount = max(0, idleCount)
 
-	time := 0
-
-	for maxHeap.Len() > 0 {
-		cycle := n + 1
-		list := make([]int, 0)
-		count := 0
-
-		for cycle > 0 && maxHeap.Len() > 0 {
-			cycle--
-			popped := heap.Pop(maxHeap).(int)
-			if popped > 1 {
-				list = append(list, popped-1)
-			}
-			count++
-		}
-
-		for _, value := range list {
-			heap.Push(maxHeap, value)
-		}
-
-		if maxHeap.Len() == 0 {
-			time += count
-		} else {
-			time += n + 1
-		}
-	}
-
-	return time
+	return len(tasks) + idleCount
 }
