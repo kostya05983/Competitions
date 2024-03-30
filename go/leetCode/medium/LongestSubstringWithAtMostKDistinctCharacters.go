@@ -1,18 +1,17 @@
 package medium
 
 func lengthOfLongestSubstringKDistinct(s string, k int) int {
-	runes := []rune(s)
 	right := 0
 	left := 0
-	set := make(map[rune]int, 0)
+	set := make(map[byte]int, 0)
 	maxLen := 0
 
-	for ; right < len(runes); right++ {
-		ch := runes[right]
+	for ; right < len(s); right++ {
+		ch := s[right]
 		set[ch]++
 
 		for len(set) > k {
-			leftCh := runes[left]
+			leftCh := s[left]
 			set[leftCh]--
 
 			v, ok := set[leftCh]
