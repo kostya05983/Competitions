@@ -1,4 +1,4 @@
-package medium
+package hard
 
 func subarraysWithKDistinct(nums []int, k int) int {
 	set := make(map[int]int, 0)
