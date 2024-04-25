@@ -1,8 +1,8 @@
 package main
 
 import "fmt"
-import "./medium"
+import "./medium/longest_ideal_subsequence"
 
 func main() {
-	fmt.Println(medium.CheckValidString("((((()(()()()*()(((((*)()*(**(())))))(())()())(((())())())))))))(((((())*)))()))(()((*()*(*)))(*)()"))
+	fmt.Println(longest_ideal_subsequence.LongestIdealString("acfgbd", 2))
 }
