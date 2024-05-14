@@ -6,11 +6,7 @@ func getMaximumGold(grid [][]int) int {
 		for j := range grid[i] {
 			if grid[i][j] != 0 {
 
-				visited := make([][]bool, len(grid))
-				for k := range grid {
-					visited[k] = make([]bool, len(grid[0]))
-				}
-				result = max(result, traverse(i, j, grid, 0, visited))
+				result = max(result, traverse(i, j, grid))
 			}
 		}
 	}
@@ -18,28 +14,23 @@ func getMaximumGold(grid [][]int) int {
 	return result
 }
 
-func traverse(i, j int, grid [][]int, sum int, visited [][]bool) int {
+func traverse(i, j int, grid [][]int) int {
 	if i < 0 || j < 0 || i >= len(grid) || j >= len(grid[0]) {
-		return sum
+		return 0
 	}
-	if grid[i][j] == 0 {
-		return sum
+	if grid[i][j] <= 0 {
+		return 0
 	}
-	if visited[i][j] {
-		return sum
-	}
-
-
 
 	rowDiff := []int{0, 1, -1, 0}
 	columnDiff := []int{-1, 0, 0, 1}
 
-	visited[i][j] = true
+	grid[i][j] = -grid[i][j]
 	result := 0
 	for l := 0; l < 4; l++ {
-		result = max(result, traverse(i+rowDiff[l], j+columnDiff[l], grid, sum+grid[i][j], visited))
+		result = max(result, traverse(i+rowDiff[l], j+columnDiff[l], grid))
 	}
-	visited[i][j] = false
+	grid[i][j] = -grid[i][j]
 
-	return result
+	return result + grid[i][j]
 }
