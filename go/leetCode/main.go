@@ -1,8 +1,9 @@
 package main
 
 import "fmt"
-import "./medium/longest_ideal_subsequence"
+import "./medium/palindrome_partitioning"
 
 func main() {
-	fmt.Println(longest_ideal_subsequence.LongestIdealString("acfgbd", 2))
+	result := palindrome_partitioning.Partition("abbab")
+	fmt.Println(result)
 }
