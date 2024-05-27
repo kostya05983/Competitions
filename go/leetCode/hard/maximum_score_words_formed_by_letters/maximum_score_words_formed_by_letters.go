@@ -1,5 +1,7 @@
 package maximum_score_words_formed_by_letters
 
+import "maps"
+
 func maxScoreWords(words []string, letters []byte, score []int) int {
 	lettersMap:=make(map[byte]int, 0)
 
