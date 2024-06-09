@@ -4,7 +4,7 @@ package sum_divisible_by_k
 func subarraysDivByK(nums []int, k int) int {
 	result := 0
 
-	temp := make(map[int]int, 0)
+	temp := make([]int, k)
 	temp[0] = 1
 
 	sum := 0
